@@ -51,6 +51,7 @@ const Info = styled.div`
 
 const Card = () => {
   return (
+    <Link to="/video/test" style={{ textDecoration: "none" }}>
     <Container>
     <Image src="https://i.ytimg.com/vi/8uNeCwxlxn4/maxresdefault.jpg"/>
     <Details >
@@ -64,6 +65,7 @@ const Card = () => {
           </Texts>
         </Details>
     </Container>
+    </Link>
   )
 }
 
