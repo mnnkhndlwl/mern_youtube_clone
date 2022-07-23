@@ -115,12 +115,14 @@ const Menu = ({ darkMode, setDarkMode }) => {
         <Hr />
         <Login>
           Sign in to like videos, comment, and subscribe.
-          
-            <Button>
+          <Link to="signin" style={{ textDecoration: "none"}}>
+          <Button>
               <AccountCircleOutlinedIcon />
               SIGN IN
             </Button>
        
+          </Link>
+            
         </Login>
         <Hr />
         <Title>BEST Categories</Title>
