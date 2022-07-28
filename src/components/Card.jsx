@@ -55,7 +55,7 @@ const Card = ({type}) => {
     <Link to="/video/test" style={{ textDecoration: "none" }}>
     <Container type={type}>
     <Image  type={type}
-    src="https://i.ytimg.com/vi/8uNeCwxlxn4/maxresdefault.jpg"/>
+    src="https://pyxis.nymag.com/v1/imgs/a35/319/573770d8b3de5c8392b9246a7d4eb9c141-15-weathering-with-you-2.rsocial.w1200.jpg"/>
     <Details type={type}>
           <ChannelImage
            type={type}
