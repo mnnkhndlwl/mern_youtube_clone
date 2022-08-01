@@ -33,6 +33,7 @@ app.use("/api/users", userRoutes);
 app.use("/api/videos/", videoRoutes);
 app.use("/api/comments", commentRoutes);
 
+
 //error handler - to give error messages so that we don't have to implement catch error for every request
 app.use((err, req, res, next) => {
   const status = err.status || 500;
@@ -44,7 +45,14 @@ app.use((err, req, res, next) => {
   });
 });
 
-app.listen(3001, () => {
+app.use(express.static(path.join(__dirname, "/client/build")));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '/client/build', 'index.html'));
+});
+
+
+app.listen(process.env.PORT || 5000, () => {
     connect();
     console.log("Connected to Server");
   });

@@ -7,7 +7,6 @@ import AddTaskOutlinedIcon from "@mui/icons-material/AddTaskOutlined";
 import ThumbDownIcon from "@mui/icons-material/ThumbDown";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import Comments from "../components/Comments";
-import Card from "../components/Card";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
@@ -15,6 +14,7 @@ import { dislike, fetchSuccess, like } from "../redux/videoSlice";
 import { format } from "timeago.js";
 import { subscription } from "../redux/userSlice";
 import Recommendation from "../components/Recommendation";
+import { axiosInstance } from "../config";
 
 const Container = styled.div`
   display: flex;
@@ -129,9 +129,9 @@ const Video = () => {
     console.log("pathin use");
     const fetchData = async () => {
       try {
-        const videoRes = await axios.get(`/api/videos/find/${path}`);
+        const videoRes = await axiosInstance.get(`/api/videos/find/${path}`);
         console.log(path);
-        const channelRes = await axios.get(
+        const channelRes = await axiosInstance.get(
           `/api/users/find/${videoRes.data.userId}`
         );
         setChannel(channelRes.data);

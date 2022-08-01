@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import {axiosInstance} from "../config";
 import { useDispatch } from "react-redux";
 import { loginFailure, loginStart, loginSuccess } from "../redux/userSlice";
 import { auth,provider } from "../firebase";
@@ -80,7 +80,7 @@ const SignIn = () => {
     e.preventDefault();
     dispatch(loginStart());
     try {
-      const res = await axios.post("/api/auth/signin", { name, password });
+      const res = await axiosInstance.post("/api/auth/signin", { name, password });
       dispatch(loginSuccess(res.data));
       navigate("/")
     } catch (error) {
@@ -92,7 +92,7 @@ const SignIn = () => {
     dispatch(loginStart());
     signInWithPopup(auth, provider)
       .then((result) => {
-        axios
+        axiosInstance
           .post("/api/auth/google", {
             name: result.user.displayName,
             email: result.user.email,
