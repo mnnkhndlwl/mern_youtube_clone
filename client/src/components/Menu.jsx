@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import logo from "../img/logo.png";
 import HomeIcon from "@mui/icons-material/Home";
+import { useSelector } from "react-redux";
 import ExploreOutlinedIcon from "@mui/icons-material/ExploreOutlined";
 import SubscriptionsOutlinedIcon from "@mui/icons-material/SubscriptionsOutlined";
 import VideoLibraryOutlinedIcon from "@mui/icons-material/VideoLibraryOutlined";
@@ -18,6 +19,7 @@ import FlagOutlinedIcon from "@mui/icons-material/FlagOutlined";
 import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 import SettingsBrightnessOutlinedIcon from "@mui/icons-material/SettingsBrightnessOutlined";
 import { Link } from "react-router-dom";
+
 const Container = styled.div`
   flex: 1;
   background-color: ${({ theme }) => theme.bgLighter};
@@ -82,6 +84,9 @@ const Title = styled.h2`
 `;
 
 const Menu = ({ darkMode, setDarkMode }) => {
+
+  const { currentUser } = useSelector(state=>state.user)
+
   return (
     <Container>
       <Wrapper>
@@ -103,7 +108,7 @@ const Menu = ({ darkMode, setDarkMode }) => {
           Explore
         </Item>
         </Link>
-        <Link to="subcriptions" style={{ textDecoration: "none",color: "inherit"  }}>
+        <Link to="subscriptions" style={{ textDecoration: "none",color: "inherit"  }}>
         <Item>
           <SubscriptionsOutlinedIcon />
           Subscriptions
@@ -119,17 +124,20 @@ const Menu = ({ darkMode, setDarkMode }) => {
           History
         </Item>
         <Hr />
-        <Login>
+        {
+          !currentUser &&
+          <>
+          <Login>
           Sign in to like videos, comment, and subscribe.
           <Link to="signin" style={{ textDecoration: "none"}}>
           <Button>
               <AccountCircleOutlinedIcon />
               SIGN IN
             </Button>
-       
           </Link>
-            
         </Login>
+        </>
+        }
         <Hr />
         <Title>BEST Categories</Title>
         <Item>

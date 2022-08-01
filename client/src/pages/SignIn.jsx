@@ -2,6 +2,10 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { loginFailure, loginStart, loginSuccess } from "../redux/userSlice";
+import { auth,provider } from "../firebase";
+import { signInWithPopup } from "firebase/auth";
 
 const Container = styled.div`
   display: flex;
@@ -70,16 +74,41 @@ const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    dispatch(loginStart());
     try {
-      const res = await axios.post("/auth/signin", { name, password });
+      const res = await axios.post("/api/auth/signin", { name, password });
+      dispatch(loginSuccess(res.data));
       navigate("/")
     } catch (error) {
-      
+      dispatch(loginFailure());
     }
   }
+
+  const signInWithGoogle = async () => {
+    dispatch(loginStart());
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        axios
+          .post("/api/auth/google", {
+            name: result.user.displayName,
+            email: result.user.email,
+            img: result.user.photoURL,
+          })
+          .then((res) => {
+            console.log(res)
+            dispatch(loginSuccess(res.data));
+            navigate("/")
+          });
+      })
+      .catch((error) => {
+        dispatch(loginFailure());
+      });
+  };
+
 
   return (
     <Container>
@@ -97,7 +126,7 @@ const SignIn = () => {
         />
         <Button onClick={handleLogin}>Sign in</Button>
         <Title>or</Title>
-        <Button >Signin with Google</Button>
+        <Button onClick={signInWithGoogle}>Signin with Google</Button>
         <Title>or</Title>
         <Input
           placeholder="username"
