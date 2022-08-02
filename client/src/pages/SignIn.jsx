@@ -75,6 +75,7 @@ const SignIn = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate()
   const dispatch = useDispatch()
+  console.log(email);
 
   const handleLogin = async (e) => {
     e.preventDefault();
