@@ -5,8 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node index.js --ignore './client/'",
-    "heroku-postbuild": "cd client && npm install && npm run build"
+    "start": "nodemon index.js --ignore '../client/'",
   },
   "keywords": [],
   "author": "",
