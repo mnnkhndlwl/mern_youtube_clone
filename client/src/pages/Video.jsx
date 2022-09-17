@@ -118,6 +118,7 @@ const VideoFrame = styled.video`
 
 const Video = () => {
   const { currentUser } = useSelector((state) => state.user);
+  const { currentVideo } = useSelector((state) => state.video);
   
   const dispatch = useDispatch();
 
@@ -136,12 +137,14 @@ const Video = () => {
         );
         setChannel(channelRes.data);
         dispatch(fetchSuccess(videoRes.data));
-      } catch (err) {}
+      } catch (err) {
+        console.log(err);
+      }
     };
     fetchData();
-  }, [path, dispatch]);
+  }, [path,dispatch]);
 
-  const  {currentVideo}  = useSelector((state) => state.video);
+  if(!currentVideo) return 'loading... ';
 
   const handleLike = async () => {
     await axios.put(`/api/users/like/${currentVideo._id}`);
