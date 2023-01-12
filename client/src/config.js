@@ -5,5 +5,5 @@ import axios from "axios";
 // })
 
 export const axiosInstance = axios.create({
-    baseURL : "http://192.168.0.102:3001"
+    baseURL : "https://youtube-backend-93iq.onrender.com/"
 })
