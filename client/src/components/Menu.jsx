@@ -4,6 +4,7 @@ import logo from "../img/logo.png";
 import HomeIcon from "@mui/icons-material/Home";
 import { useSelector } from "react-redux";
 import ExploreOutlinedIcon from "@mui/icons-material/ExploreOutlined";
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import SubscriptionsOutlinedIcon from "@mui/icons-material/SubscriptionsOutlined";
 import VideoLibraryOutlinedIcon from "@mui/icons-material/VideoLibraryOutlined";
 import HistoryOutlinedIcon from "@mui/icons-material/HistoryOutlined";
@@ -18,7 +19,9 @@ import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import FlagOutlinedIcon from "@mui/icons-material/FlagOutlined";
 import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 import SettingsBrightnessOutlinedIcon from "@mui/icons-material/SettingsBrightnessOutlined";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { logout } from "../redux/userSlice";
+import { useDispatch } from "react-redux";
 
 const Container = styled.div`
   flex: 1;
@@ -84,35 +87,50 @@ const Title = styled.h2`
 `;
 
 const Menu = ({ darkMode, setDarkMode }) => {
+  const { currentUser } = useSelector((state) => state.user);
 
-  const { currentUser } = useSelector(state=>state.user)
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const handleLogout = async (e) => {
+    e.preventDefault();
+    try {
+      dispatch(logout());
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <Container>
       <Wrapper>
-      <Link to="/" style={{ textDecoration: "none", color: "inherit"  }}>
+        <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
           <Logo>
             <Img src={logo} />
             Fakehube
           </Logo>
-       </Link>
-       <Link to="/" style={{ textDecoration: "none",color: "inherit" }}>
-        <Item>
-          <HomeIcon />
-          Home
-        </Item>
         </Link>
-        <Link to="trends" style={{ textDecoration: "none",color:"inherit"}}>
-        <Item>
-          <ExploreOutlinedIcon />
-          Explore
-        </Item>
+        <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
+          <Item>
+            <HomeIcon />
+            Home
+          </Item>
         </Link>
-        <Link to="subscriptions" style={{ textDecoration: "none",color: "inherit"  }}>
-        <Item>
-          <SubscriptionsOutlinedIcon />
-          Subscriptions
-        </Item>
+        <Link to="trends" style={{ textDecoration: "none", color: "inherit" }}>
+          <Item>
+            <ExploreOutlinedIcon />
+            Explore
+          </Item>
+        </Link>
+        <Link
+          to="subscriptions"
+          style={{ textDecoration: "none", color: "inherit" }}
+        >
+          <Item>
+            <SubscriptionsOutlinedIcon />
+            Subscriptions
+          </Item>
         </Link>
         <Hr />
         <Item>
@@ -124,20 +142,26 @@ const Menu = ({ darkMode, setDarkMode }) => {
           History
         </Item>
         <Hr />
-        {
-          !currentUser &&
+        {currentUser ? (
           <>
-          <Login>
-          Sign in to like videos, comment, and subscribe.
-          <Link to="signin" style={{ textDecoration: "none"}}>
-          <Button>
-              <AccountCircleOutlinedIcon />
-              SIGN IN
+            <Button className="btn1" onClick={handleLogout}>
+            <ExitToAppIcon />
+               Log Out
             </Button>
-          </Link>
-        </Login>
-        </>
-        }
+          </>
+        ) : (
+          <>
+            <Login>
+              Sign in to like videos, comment, and subscribe.
+              <Link to="signin" style={{ textDecoration: "none" }}>
+                <Button>
+                  <AccountCircleOutlinedIcon />
+                  SIGN IN
+                </Button>
+              </Link>
+            </Login>
+          </>
+        )}
         <Hr />
         <Title>BEST Categories</Title>
         <Item>
@@ -165,10 +189,12 @@ const Menu = ({ darkMode, setDarkMode }) => {
           Live
         </Item>
         <Hr />
+        <Link to="settings" style={{ textDecoration: "none", color: "inherit" }}>
         <Item>
           <SettingsOutlinedIcon />
-          Settings
+          your videos
         </Item>
+        </Link>
         <Item>
           <FlagOutlinedIcon />
           Report

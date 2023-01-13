@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import {axiosInstance} from "../config";
+import { publicRequest } from "../config";
 import { useDispatch } from "react-redux";
 import { loginFailure, loginStart, loginSuccess } from "../redux/userSlice";
-import { auth,provider } from "../firebase";
+import { auth, provider } from "../firebase";
 import { signInWithPopup } from "firebase/auth";
 
 const Container = styled.div`
@@ -73,43 +73,45 @@ const SignIn = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   console.log(email);
 
   const handleLogin = async (e) => {
     e.preventDefault();
     dispatch(loginStart());
     try {
-      const res = await axiosInstance.post("/api/auth/signin", { name, password });
+      const res = await publicRequest.post("/api/auth/signin", {
+        name,
+        password,
+      });
       dispatch(loginSuccess(res.data));
-      navigate("/")
+      navigate("/");
     } catch (error) {
       dispatch(loginFailure());
     }
-  }
+  };
 
   const signInWithGoogle = async () => {
     dispatch(loginStart());
     signInWithPopup(auth, provider)
       .then((result) => {
-        axiosInstance
+        publicRequest
           .post("/api/auth/google", {
             name: result.user.displayName,
             email: result.user.email,
             img: result.user.photoURL,
           })
           .then((res) => {
-            console.log(res)
+            console.log(res);
             dispatch(loginSuccess(res.data));
-            navigate("/")
+            navigate("/");
           });
       })
       .catch((error) => {
         dispatch(loginFailure());
       });
   };
-
 
   return (
     <Container>

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { format } from "timeago.js";
 import React, { useEffect, useState } from "react";
-import {axiosInstance} from "../config.js";
+import {publicRequest} from "../config.js";
 
 const Container = styled.div`
   width: ${(props) => props.type !== "sm" && "360px"};
@@ -58,7 +58,7 @@ const Card = ({type,video}) => {
 
   useEffect(() => {
     const fetchChannel = async () => {
-      const res = await axiosInstance.get(`/api/users/find/${video.userId}`);
+      const res = await publicRequest.get(`/api/users/find/${video.userId}`);
       setChannel(res.data);
     };
     fetchChannel();
@@ -77,7 +77,7 @@ const Card = ({type,video}) => {
           <Texts>
             <Title>{video.title}</Title>
             <ChannelName>{channel.name}</ChannelName>
-            <Info>{video.views} views • {format(video.createdAt)}</Info>
+            <Info>{video.views/2} views • {format(video.createdAt)}</Info>
           </Texts>
         </Details>
     </Container>

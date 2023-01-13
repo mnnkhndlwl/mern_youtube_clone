@@ -1,15 +1,13 @@
-
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
-import { axiosInstance } from "../config";
+import { publicRequest, userRequest } from "../config";
 import Comment from "./Comment";
-
 const Container = styled.div``;
 
 const NewComment = styled.div`
   display: flex;
-  align-items: center;
+  justify-content: center;
   gap: 10px;
 `;
 
@@ -28,17 +26,28 @@ const Input = styled.input`
   padding: 5px;
   width: 100%;
 `;
+const AddComment = styled.button`
+  background-color: #87ceeb;
+  font-weight: 500;
+  color: white;
+  border: none;
+  justify-content: center;
+  border-radius: 10px;
+  height: max-content;
+  padding: 10px 20px;
+  cursor: pointer;
+`;
 
-const Comments = ({videoId}) => {
-
+const Comments = ({ videoId }) => {
   const { currentUser } = useSelector((state) => state.user);
 
   const [comments, setComments] = useState([]);
+  const [newComment, setNewComment] = useState("");
 
   useEffect(() => {
     const fetchComments = async () => {
       try {
-        const res = await axiosInstance.get(`/api/comments/${videoId}`);
+        const res = await publicRequest.get(`/api/comments/${videoId}`);
         setComments(res.data);
       } catch (err) {}
     };
@@ -46,18 +55,41 @@ const Comments = ({videoId}) => {
   }, [videoId]);
 
   //TODO: ADD NEW COMMENT FUNCTIONALITY
+  const fetchComments = async () => {
+    try {
+      const res = await publicRequest.get(`/api/comments/${videoId}`);
+      setComments(res.data);
+    } catch (err) {}
+  };
+  const handleComment = async () => {
+    try {
+      await userRequest.post(`/api/comments/`,{
+        videoId : videoId,
+        desc : newComment
+      });
+      fetchComments();
+      setNewComment('');
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <Container>
-    <NewComment>
-    <Avatar src={currentUser.img}/>
-    <Input placeholder="Add a comment..." />
-  </NewComment>
-  {comments.map(comment=>(
-        <Comment key={comment._id} comment={comment}/>
+      <NewComment>
+        <Avatar src={currentUser.img} />
+        <Input
+          placeholder="Add a comment..."
+          value={newComment}
+          onChange={(e) => setNewComment(e.target.value)}
+        />
+        <AddComment onClick={handleComment}>comment</AddComment>
+      </NewComment>
+      {comments.map((comment) => (
+        <Comment key={comment._id} comment={comment} viid={videoId}/>
       ))}
-  </Container>
-  )
-}
+    </Container>
+  );
+};
 
-export default Comments
+export default Comments;

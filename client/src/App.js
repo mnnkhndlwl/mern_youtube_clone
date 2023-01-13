@@ -40,6 +40,7 @@ function App() {
                   <Route index element={<Home type="random"/>} />
                   <Route path="trends" index element={<Home type="trend"/>} />
                   <Route path="subscriptions" element={<Home type="sub" />} />
+                  <Route path="settings" element={<Home type="settings" />} />
                   <Route path="search" element={<Search />} />
                   <Route
                     path="signin"

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import Card from '../components/Card'
-import { axiosInstance } from '../config';
+import { publicRequest, userRequest } from '../config';
 
 const Container = styled.div`
 display: flex;
@@ -10,13 +10,21 @@ flex-wrap:wrap;
 `;
 
 const Home = ({type}) => {
-
   const [videos, setVideos] = useState([]);
-
   useEffect(() => {
     const fetchVideos = async () => {
-      const res = await axiosInstance.get(`/api/videos/${type}`);
-      setVideos(res.data);
+      if(type === "sub") {
+        const res = await userRequest.get(`/api/videos/${type}`);
+        setVideos(res.data);
+      }
+      else if(type === "settings") {
+        const res = await userRequest.get(`/api/videos/${type}`);
+        setVideos(res.data);
+      }
+      else {
+        const res = await publicRequest.get(`/api/videos/${type}`);
+        setVideos(res.data);
+      }
     };
     fetchVideos();
   }, [type]);
