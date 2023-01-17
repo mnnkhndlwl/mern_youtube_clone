@@ -96,6 +96,7 @@ const Menu = ({ darkMode, setDarkMode }) => {
     e.preventDefault();
     try {
       dispatch(logout());
+      localStorage.clear();
       navigate("/");
     } catch (error) {
       console.log(error);
@@ -108,7 +109,7 @@ const Menu = ({ darkMode, setDarkMode }) => {
         <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
           <Logo>
             <Img src={logo} />
-            Fakehube
+            VideoTube
           </Logo>
         </Link>
         <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>

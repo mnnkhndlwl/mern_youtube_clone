@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { publicRequest } from "../config";
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 import { loginFailure, loginStart, loginSuccess } from "../redux/userSlice";
 import { auth, provider } from "../firebase";
 import { signInWithPopup } from "firebase/auth";
+import ErrorMessage from "../utils/errorMessage";
+import LoadingSpinner from "../utils/spinner";
 
 const Container = styled.div`
   display: flex;
@@ -70,9 +72,11 @@ const Link = styled.span`
 `;
 
 const SignIn = () => {
+  const { loading } = useSelector((state) => state.user);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState('');
   const navigate = useNavigate();
   const dispatch = useDispatch();
   console.log(email);
@@ -87,7 +91,25 @@ const SignIn = () => {
       });
       dispatch(loginSuccess(res.data));
       navigate("/");
+      window.location.reload();
     } catch (error) {
+      console.log(error.response['data']);
+      setError(error.response['data']['message']);
+      dispatch(loginFailure());
+    }
+  };
+
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await publicRequest.post("/api/auth/signup", {
+        name,
+        password,
+        email,
+      });
+      setError('Account has been created');
+    } catch (error) {
+      setError(error.response['data']['message']);
       dispatch(loginFailure());
     }
   };
@@ -106,6 +128,7 @@ const SignIn = () => {
             console.log(res);
             dispatch(loginSuccess(res.data));
             navigate("/");
+            window.location.reload();
           });
       })
       .catch((error) => {
@@ -115,7 +138,13 @@ const SignIn = () => {
 
   return (
     <Container>
+    {
+      error && <ErrorMessage message={error} />
+    }
       <Wrapper>
+      {
+        loading ? <LoadingSpinner /> : 
+        <>   
         <Title>Sign in</Title>
         <SubTitle>to continue to Fakehube</SubTitle>
         <Input
@@ -140,8 +169,11 @@ const SignIn = () => {
           type="password"
           placeholder="password"
           onChange={(e) => setPassword(e.target.value)}
+          required
         />
-        <Button>Sign up</Button>
+        <Button onClick={handleRegister}>Sign up</Button>
+        </>
+      }
       </Wrapper>
       <More>
         Angrezi(US)

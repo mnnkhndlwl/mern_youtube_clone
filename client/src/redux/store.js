@@ -1,3 +1,4 @@
+import { PersistGate } from "redux-persist/integration/react";
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import userReducer from "./userSlice";
 import videoReducer from "./videoSlice";
@@ -12,18 +13,12 @@ import {
   REGISTER,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import { PersistGate } from "redux-persist/integration/react";
 
 const persistConfig = {
-//   key: "root",
-//   storage,
-//   version: 1,
-//  // whitelist: ["user", "video"]
 key: "root",
 version: 1,
 keyPrefix: "",
 storage,
-//stateReconciler: autoMergeLevel2, // see "Merge Process" section for details.
 };
 
 const rootReducer = combineReducers({ user: userReducer, video: videoReducer });

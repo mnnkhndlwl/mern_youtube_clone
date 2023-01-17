@@ -76,7 +76,7 @@ const Comment = ({ comment,viid }) => {
         </Name>
         <Text>{comment.desc}</Text>
         {
-          currentUser._id !== comment.userId ? <>
+          currentUser?._id !== comment.userId ? <>
 
           </> : 
       <Button onClick={handleDelete}>

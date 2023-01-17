@@ -9,12 +9,13 @@ import ThumbDownIcon from "@mui/icons-material/ThumbDown";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import Comments from "../components/Comments";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
+import { useLocation,useNavigate } from "react-router-dom";
 import { dislike, fetchSuccess, like } from "../redux/videoSlice";
 import { format } from "timeago.js";
 import { subscription } from "../redux/userSlice";
 import Recommendation from "../components/Recommendation";
 import { publicRequest, userRequest } from "../config";
+import LoadingSpinner from "../utils/spinner";
 
 const Container = styled.div`
   display: flex;
@@ -118,8 +119,9 @@ const VideoFrame = styled.video`
 
 const Video = () => {
   const { currentUser } = useSelector((state) => state.user);
-  const { currentVideo } = useSelector((state) => state.video);
 
+  const { currentVideo,loading } = useSelector((state) => state.video);
+  const navigate = useNavigate()
   const dispatch = useDispatch();
 
   const path = useLocation().pathname.split("/")[2];
@@ -166,7 +168,8 @@ const Video = () => {
   // to do 
   const handleDelete = async () => {
     try {
-      await userRequest.delete(`/api/`);
+      await userRequest.delete(`/api/videos/${path}`);
+      navigate("/");
     } catch (error) {
       console.log(error);
     }
@@ -174,6 +177,8 @@ const Video = () => {
 
   return (
     <>
+    {
+      loading ? <LoadingSpinner /> : 
       <Container>
         <Content>
           <VideoWrapper>
@@ -207,7 +212,7 @@ const Video = () => {
               <Button>
                 <AddTaskOutlinedIcon /> Save
               </Button>
-              {currentUser._id !== currentVideo.userId ? (
+              {currentUser?._id !== currentVideo.userId ? (
                 <></>
               ) : (
                 <Button onClick={handleDelete}>
@@ -229,7 +234,7 @@ const Video = () => {
               </ChannelDetail>
             </ChannelInfo>
             <Subscribe onClick={handleSub}>
-              {currentUser.subscribedUsers?.includes(channel._id)
+              {currentUser?.subscribedUsers?.includes(channel._id)
                 ? "SUBSCRIBED"
                 : "SUBSCRIBE"}
             </Subscribe>
@@ -239,6 +244,7 @@ const Video = () => {
         </Content>
         <Recommendation tags={currentVideo.tags} />
       </Container>
+    }
     </>
   );
 };
