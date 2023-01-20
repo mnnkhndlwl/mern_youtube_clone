@@ -21,7 +21,7 @@ import axios from "axios";
 // export const axiosInstance = axios.create({
 //     baseURL : "http://localhost:5000/" 
 // });
-const BASE_URL = "https://youtube-backend-93iq.onrender.com/";
+const BASE_URL = "http://localhost:3001/";
 // const TOKEN =
 //   JSON.parse(JSON.parse(localStorage.getItem("persist:root")).user).currentUser
 //     .accessToken || "";

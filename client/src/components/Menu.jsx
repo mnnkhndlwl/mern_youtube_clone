@@ -4,7 +4,7 @@ import logo from "../img/logo.png";
 import HomeIcon from "@mui/icons-material/Home";
 import { useSelector } from "react-redux";
 import ExploreOutlinedIcon from "@mui/icons-material/ExploreOutlined";
-import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import SubscriptionsOutlinedIcon from "@mui/icons-material/SubscriptionsOutlined";
 import VideoLibraryOutlinedIcon from "@mui/icons-material/VideoLibraryOutlined";
 import HistoryOutlinedIcon from "@mui/icons-material/HistoryOutlined";
@@ -28,13 +28,11 @@ const Container = styled.div`
   background-color: ${({ theme }) => theme.bgLighter};
   height: 100%;
   color: ${({ theme }) => theme.text};
-  font-size: 14px;
+  font-size: 15px;
   position: sticky;
   top: 0;
 `;
-const Wrapper = styled.div`
-  padding: 18px 26px;
-`;
+
 const Logo = styled.div`
   display: flex;
   align-items: center;
@@ -57,6 +55,10 @@ const Item = styled.div`
   &:hover {
     background-color: ${({ theme }) => theme.soft};
   }
+`;
+
+const Wrapper = styled.div`
+  padding: 18px 26px;
 `;
 
 const Hr = styled.hr`
@@ -92,6 +94,7 @@ const Menu = ({ darkMode, setDarkMode }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+
   const handleLogout = async (e) => {
     e.preventDefault();
     try {
@@ -106,12 +109,13 @@ const Menu = ({ darkMode, setDarkMode }) => {
   return (
     <Container>
       <Wrapper>
-        <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
-          <Logo>
+    <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
+          <Logo >
             <Img src={logo} />
             VideoTube
           </Logo>
         </Link>
+        
         <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
           <Item>
             <HomeIcon />
@@ -146,8 +150,8 @@ const Menu = ({ darkMode, setDarkMode }) => {
         {currentUser ? (
           <>
             <Button className="btn1" onClick={handleLogout}>
-            <ExitToAppIcon />
-               Log Out
+              <ExitToAppIcon />
+              Log Out
             </Button>
           </>
         ) : (
@@ -190,11 +194,14 @@ const Menu = ({ darkMode, setDarkMode }) => {
           Live
         </Item>
         <Hr />
-        <Link to="settings" style={{ textDecoration: "none", color: "inherit" }}>
-        <Item>
-          <SettingsOutlinedIcon />
-          your videos
-        </Item>
+        <Link
+          to="settings"
+          style={{ textDecoration: "none", color: "inherit" }}
+        >
+          <Item>
+            <SettingsOutlinedIcon />
+            your videos
+          </Item>
         </Link>
         <Item>
           <FlagOutlinedIcon />

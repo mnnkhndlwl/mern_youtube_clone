@@ -146,7 +146,7 @@ const SignIn = () => {
         loading ? <LoadingSpinner /> : 
         <>   
         <Title>Sign in</Title>
-        <SubTitle>to continue to Fakehube</SubTitle>
+        <SubTitle>to continue to videoTube</SubTitle>
         <Input
           placeholder="username"
           onChange={(e) => setName(e.target.value)}

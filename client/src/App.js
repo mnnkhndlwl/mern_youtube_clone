@@ -9,9 +9,18 @@ import Video from "./pages/Video";
 import SignIn from "./pages/SignIn";
 import Search from "./pages/Search";
 import { useSelector } from "react-redux";
+import { useSwipeable } from 'react-swipeable'
 
 const Container = styled.div`
   display: flex;
+ 
+`;
+
+const SwipeContainer = styled.div`
+background-color: ${({ theme }) => theme.bg};
+ &.open {
+    display : none;
+  }
 `;
 
 const Main = styled.div`
@@ -26,12 +35,24 @@ const Wrapper = styled.div`
 
 function App() {
   const [darkMode, setDarkMode] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleToggle = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const swipeHandlers = useSwipeable({
+    onSwipedLeft: handleToggle,
+    onSwipedRight: handleToggle,
+  });
   const { currentUser } = useSelector((state) => state.user);
   return (
     <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
-    <Container>
+    <Container {...swipeHandlers}>
     <BrowserRouter>
-    <Menu darkMode={darkMode} setDarkMode={setDarkMode} />
+    <SwipeContainer className={isOpen ? "open" : ""}>
+    <Menu darkMode={darkMode} setDarkMode={setDarkMode}/>
+    </SwipeContainer>
       <Main>
         <Navbar />
         <Wrapper>
