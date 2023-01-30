@@ -1,7 +1,18 @@
 # mern_youtube_clone
 Youtube Clone built with Mern Stack
-
+#
 ![image](https://user-images.githubusercontent.com/75252077/215504244-3c88e023-4749-4366-99f5-b50575440c94.png)
+#
+
+![image](https://user-images.githubusercontent.com/75252077/215592578-6ba38684-3016-45c9-9c5f-05e620f91227.png)
+
+#
+
+![image](https://user-images.githubusercontent.com/75252077/215592676-c3456e26-73e0-4b17-9236-ae1199ddc4c1.png)
+
+#
+
+![image](https://user-images.githubusercontent.com/75252077/215592772-3840835c-d298-41b8-9f12-a23c0d633f47.png)
 
 
 ## Tech stack Used
