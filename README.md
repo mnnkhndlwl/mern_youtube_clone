@@ -1,6 +1,5 @@
 # mern_youtube_clone
 Youtube Clone built with Mern Stack
-for server repo :- https://github.com/mnnkhndlwl/youtube-backend
 #
 ![image](https://user-images.githubusercontent.com/75252077/215504244-3c88e023-4749-4366-99f5-b50575440c94.png)
 #
