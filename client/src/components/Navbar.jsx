@@ -8,10 +8,12 @@ import VideoCallOutlinedIcon from "@mui/icons-material/VideoCallOutlined";
 import Upload from "./Upload";
 
 const Container = styled.div`
+  width : 100%;
   position: sticky;
   top: 0;
   background-color: ${({ theme }) => theme.bgLighter};
   height: 56px;
+
 `;
 
 const Wrapper = styled.div`
@@ -56,6 +58,7 @@ const Button = styled.button`
   display: flex;
   align-items: center;
   gap: 5px;
+ 
 `;
 
 const User = styled.div`

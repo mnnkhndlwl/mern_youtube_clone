@@ -17,10 +17,10 @@ const Container = styled.div`
 `;
 
 const SwipeContainer = styled.div`
-background-color: ${({ theme }) => theme.bg};
+${'' /* background-color: ${({ theme }) => theme.bg};
  &.open {
     display : none;
-  }
+  } */}
 `;
 
 const Main = styled.div`
@@ -48,11 +48,9 @@ function App() {
   const { currentUser } = useSelector((state) => state.user);
   return (
     <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
-    <Container {...swipeHandlers}>
+    <Container >
     <BrowserRouter>
-    <SwipeContainer className={isOpen ? "open" : ""}>
     <Menu darkMode={darkMode} setDarkMode={setDarkMode}/>
-    </SwipeContainer>
       <Main>
         <Navbar />
         <Wrapper>
