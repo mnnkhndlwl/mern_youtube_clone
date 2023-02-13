@@ -92,6 +92,13 @@ git push -u origin <your_branch_name>
 
 15. Voila! You have made a PR to this repo. Sit back patiently and relax while your PR is reviewed
 
+# Note :- To run the app in your system you need to add .env file in both client and server folder
+# client side env file
+![image](https://user-images.githubusercontent.com/75252077/218460791-1d2ade68-ef14-4858-b9db-65ffb45cfbb5.png)
+# server side env file
+![image](https://user-images.githubusercontent.com/75252077/218461184-e11f350e-cb3c-4e8a-878d-fa30f7e9965a.png)
+
+you need to setup new project in firebase and enable storage and signin with google option
 
 # Show your support
 
