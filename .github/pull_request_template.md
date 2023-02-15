@@ -29,6 +29,6 @@ Here comes all the changes proposed through this PR
 
 <!--Add screen shots of the changed output-->
 
-## Screenshots
+## Screenshots and video
 
-Add all the screenshots which support your changes
+Add all the screenshots and a video which support your changes 
