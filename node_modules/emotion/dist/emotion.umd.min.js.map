@@ -1,0 +1,1 @@
+{"version":3,"file":"emotion.umd.min.js","sources":["../src/index.js"],"sourcesContent":["throw new Error(\n  \"The `emotion` package has been renamed to `@emotion/css`. Please import it like this `import { css } from '@emotion/css'`.\"\n)\n"],"names":["Error"],"mappings":"2FAAA,MAAM,IAAIA,MACR"}

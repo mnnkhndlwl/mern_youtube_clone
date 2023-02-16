@@ -5,9 +5,10 @@ import { publicRequest, userRequest } from "../config";
 import LoadingSpinner from "../utils/spinner";
 
 const Container = styled.div`
-display: flex;
-justify-content: space-between;
-flex-wrap:wrap; 
+display:grid;
+grid-template-columns: repeat(3, auto);
+ grid-gap: 2rem;
+
 `;
 
 const Home = ({ type }) => {
