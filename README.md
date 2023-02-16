@@ -15,15 +15,21 @@ Youtube Clone built with Mern Stack
 ![image](https://user-images.githubusercontent.com/75252077/215592772-3840835c-d298-41b8-9f12-a23c0d633f47.png)
 
 
-## Tech stack Used
-
-1. Mongodb
-2. Firebase
-3. Nodejs
-4. Express.js
-5. React.js
-6. Docker
-7. React Redux
+```
+# ReactJS in the frontend
+# State management in the frontend using Redux & Redux Toolkit
+# Styled components with more emphasis on custom CSS & little bit of Material UI & Icons
+# Video & Image upload using firebase storage
+# Search, Like & Dislike, Subscribe a channel & Comment a video features
+# Video recommendations on the video page
+# Light / Dark Mode toggling
+# Axios http client
+# JWT cookie authentication
+# Hashed password saving in the MongoDB database
+# Login & Signup with custom Email & Password, Google OAuth using firebase authentication
+# RESTful API using ExpressJS and MongoDB with mongoose
+# Error handler & Protected routes
+```
 
 # Contribute
 
@@ -92,11 +98,44 @@ git push -u origin <your_branch_name>
 
 15. Voila! You have made a PR to this repo. Sit back patiently and relax while your PR is reviewed
 
-# Note :- To run the app in your system you need to add .env file in both client and server folder
-# client side env file
-![image](https://user-images.githubusercontent.com/75252077/218460791-1d2ade68-ef14-4858-b9db-65ffb45cfbb5.png)
-# server side env file
-![image](https://user-images.githubusercontent.com/75252077/218461184-e11f350e-cb3c-4e8a-878d-fa30f7e9965a.png)
+## Usage
+
+Create .env file in the server folder and add the following environment variables:
+```
+# MONGO = 
+# JWT = 
+# PORT = 3001
+```
+
+Create .env file in the client folder and add the following environment variables, values can be found from firebase project setup
+```
+# REACT_APP_FIREBASE_KEY = 
+# GENERATE_SOURCEMAP=false
+```
+
+### Install dependencies
+
+```
+# Backend deps
+cd server
+npm install
+
+# client deps
+cd client
+npm install
+```
+
+### Run Server
+
+```
+# Backend Server (Local)
+cd server
+npm start
+
+# client Server (Local)
+cd client
+npm start
+```
 
 you need to setup new project in firebase and enable storage and signin with google option
 
