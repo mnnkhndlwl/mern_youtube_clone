@@ -137,13 +137,16 @@ const SignIn = () => {
   };
 
   return (
-    <Container>
+    <>
     {
-      error && <ErrorMessage message={error} />
-    }
+    loading ? <LoadingSpinner /> : 
+    <Container>
+      {
+        error && <ErrorMessage message={error} />
+      }
       <Wrapper>
       {
-        loading ? <LoadingSpinner /> : 
+        
         <>   
         <Title>Sign in</Title>
         <SubTitle>to continue to videoTube</SubTitle>
@@ -184,6 +187,8 @@ const SignIn = () => {
         </Links>
       </More>
     </Container>
+}
+    </>
   );
 };
 
