@@ -11,12 +11,10 @@ const rotate = keyframes`
 `;
 
 const StyledSpinner = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 100%;
-  height: 100vh;
+  position :absolute;
+  left: 50%; 
+  top: 50%; 
+  z-index: 1;
   &::before {
     content: "";
     display: block;
