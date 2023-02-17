@@ -161,7 +161,7 @@ Read more about it <a href="https://www.digitalocean.com/community/tutorial_seri
 #### 🔑Guidelines
 
 Here are some set of guidelines to follow while contributing to `mern_youtube_clone` :
-
+```
 1. Welcome to this repository, if you are here as an open-source program participant/contributor.
 2. Participants/contributors have to **comment** on issues they would like to work on, and mentors or the PA will assign you.
 3. Issues will be assigned on a **first-come, first-serve basis.**
@@ -174,6 +174,7 @@ it is an Issue or a Pull Request.
 9. Create your file in an appropriate folder with appropriate name and extension.
 10. Pull requests will be merged after being **reviewed** by  mentor .
 11. We all are here to learn. You are allowed to make mistakes. That's how you learn, right!.
+```
 
 ### How to Contribute: 
 - Drop a :star: on the Github repository (optional)<br/>
@@ -219,7 +220,7 @@ it is an Issue or a Pull Request.
   <img src="https://contrib.rocks/image?repo=mnnkhndlwl/mern_youtube_clone&&max=817" />
 </a>
 </div>
-<br>
+
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- ------------------------------------------------------------------------------------------------------------------------------------------------------------------ -->
