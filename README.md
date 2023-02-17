@@ -158,9 +158,24 @@ Read more about it <a href="https://www.digitalocean.com/community/tutorial_seri
 <a href="https://github.com/mnnkhndlwl/mern_youtube_clone"><img src="https://img.shields.io/static/v1.svg?label=Contributions&message=Welcome&color=royalblue"></a>
 <a href="https://github.com/mnnkhndlwl/mern_youtube_clone"><img src="https://img.shields.io/github/contributors/aman34503/Go-Airbnb?color=royalblue&style=flat-square"></a>
 <a href="https://github.com/mnnkhndlwl/mern_youtube_clone"><img src="https://img.shields.io/badge/Maintained%3F-yes-brightgreen.svg?color=royalblue&style=flat-square"></a>
+#### 🔑Guidelines
 
+Here are some set of guidelines to follow while contributing to `mern_youtube_clone` :
 
+1. Welcome to this repository, if you are here as an open-source program participant/contributor.
+2. Participants/contributors have to **comment** on issues they would like to work on, and mentors or the PA will assign you.
+3. Issues will be assigned on a **first-come, first-serve basis.**
+4. Participants/contributors can also **open their issues**, but it needs to be verified and labelled by a mentor. We respect all your contributions, whether 
+it is an Issue or a Pull Request.
+5. When you raise an issue, make sure you get it assigned to you before you start working on that project.
+6. Each participant/contributor will be **assigned 1 issue (max)** at a time to work.
+7. Don't create issues that are **already listed**.
+8. Please don't pick up an issue already assigned to someone else. Work on the issues after it gets **assigned to you**.
+9. Create your file in an appropriate folder with appropriate name and extension.
+10. Pull requests will be merged after being **reviewed** by  mentor .
+11. We all are here to learn. You are allowed to make mistakes. That's how you learn, right!.
 
+### How to Contribute: 
 - Drop a :star: on the Github repository (optional)<br/>
 
 - Before Contribute Please read [CONTRIBUTING.md](https://github.com/mnnkhndlwl/mern_youtube_clone/blob/master/CONTRIBUTING.md) and [CODE_OF_CONDUCT.md](https://github.com/mnnkhndlwl/mern_youtube_clone/blob/master/CODE_OF_CONDUCT.md)
