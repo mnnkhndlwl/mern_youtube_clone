@@ -136,13 +136,22 @@ const SignIn = () => {
       });
   };
 
+  const CloseError = async (e) => {
+    e.preventDefault();
+    setError('')
+  }
+
   return (
     <>
     {
     loading ? <LoadingSpinner /> : 
     <Container>
       {
-        error && <ErrorMessage message={error} />
+        error && 
+        <div onClick={CloseError}>
+          <ErrorMessage message={error} />
+        </div>
+        
       }
       <Wrapper>
       {
