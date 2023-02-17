@@ -54,6 +54,7 @@
   - [Screenshots of Website](#Screenshots-of-Websites)
 - [Contribution Guidelines](#Contribution-Guidelines)
 - [Contributors](#Contributors)
+- [Github Beginner Guide](#Github-Beginner-Guide)
 - [Feedback](#Feedback)
 
 
@@ -153,77 +154,36 @@ Read more about it <a href="https://www.digitalocean.com/community/tutorial_seri
 <!-- ------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
 
 ## Contribution Guidelines
-<a href="https://github.com/aman34503/Go-Airbnb"><img src="https://img.shields.io/static/v1.svg?label=Contributions&message=Welcome&color=royalblue"></a>
-<a href="https://github.com/aman34503/Go-Airbnb"><img src="https://img.shields.io/github/contributors/aman34503/Go-Airbnb?color=royalblue&style=flat-square"></a>
-<a href="https://github.com/aman34503/Go-Airbnb"><img src="https://img.shields.io/badge/Maintained%3F-yes-brightgreen.svg?color=royalblue&style=flat-square"></a>
+
+<a href="https://github.com/mnnkhndlwl/mern_youtube_clone"><img src="https://img.shields.io/static/v1.svg?label=Contributions&message=Welcome&color=royalblue"></a>
+<a href="https://github.com/mnnkhndlwl/mern_youtube_clone"><img src="https://img.shields.io/github/contributors/aman34503/Go-Airbnb?color=royalblue&style=flat-square"></a>
+<a href="https://github.com/mnnkhndlwl/mern_youtube_clone"><img src="https://img.shields.io/badge/Maintained%3F-yes-brightgreen.svg?color=royalblue&style=flat-square"></a>
 
 
-### Step 1. 
-* Create a Copy of this Repository,
-In order to work on an open-source project, you will first need to make your own copy of the repository. To do this, you should fork the repository and then clone it so that you have a local working copy.
 
-> **Fork :fork_and_knife: this repo. Click on the Fork button at the top right corner.**
-With the repository forked, you’re ready to clone it so that you have a local working copy of the code base.
+- Drop a :star: on the Github repository (optional)<br/>
 
+- Before Contribute Please read [CONTRIBUTING.md](https://github.com/mnnkhndlwl/mern_youtube_clone/blob/master/CONTRIBUTING.md) and [CODE_OF_CONDUCT.md](https://github.com/mnnkhndlwl/mern_youtube_clone/blob/master/CODE_OF_CONDUCT.md)
 
-> **Clone the Repository**
-To make your own local copy of the repository you would like to contribute to, let’s first open up a terminal window.
+- Create an issue of the project or a feature you would like to add in the project and get the task assigned to you.(Issue can be any bug fixes or any feature you want to add in this project).
 
-We’ll use the git clone command along with the URL that points to your fork of the repository.
+- Fork the repo to your Github.<br/>
 
-* Open the Command Prompt
-* Type this command:
+- Clone the Repo by going to your local Git Client in a particular local folder in your local machine by using this command with your forked repository link in place of below given link: <br/>
+  `git clone https://github.com/mnnkhndlwl/mern_youtube_clone`
+- Create a branch using below command.
+  `git branch <your branch name>`
+- Checkout to your branch.
+  `git checkout <your branch name>`
+- Add your code in your local machine folder.
+  `git add . `
+- Commit your changes.
+  `git commit -m"<add your message here>"`
+- Push your changes.
+  `git push --set-upstream origin <your branch name>`
 
-```
-git clone https://github.com/your_username/Go-Airbnb
-```
-
-
-### Step 2: 
-* Creating a New Branch,
-It is important to branch the repository so that you are able to manage the workflow, isolate your code, and control what features make it back to the main branch of the project repository.
-
-When creating a branch, it is very important that you create your new branch off of the master branch. 
-**To create a new branch, from your terminal window, follow:**
-
-
-```
-git branch new-branch
-git checkout new-branch
-```
-Once you enter the git checkout command, you will receive the following output:
-
-```
-Switched to branch 'new-branch'
-```
-
-
-### Step 3: 
-* Contribute,
-Make relevant changes. Add new algorithms. Add Readme files. Contribute in any way you feel like :)
-
-### Step 4: 
-* Commiting and Pushing,
-Once you have modified an existing file or added a new file to the project, you can add it to your local repository, which we can do with the git add command.
-
-``` git add filename``` or ``` git add .``` 
-You can type the command ```git add -A``` or alternatively ```git add -all``` for all new files to be staged.
-**With our file staged, we’ll want to record the changes that we made to the repository with the ```git commit``` command.**
-<p> The commit message is an important aspect of your code contribution; it helps the other contributors fully understand the change you have made, why you made it, and how significant it is.  </p>
- 
- ```
- git commit -m "commit message"
- ```
- 
- 
- At this point you can use the ```git push``` command to push the changes to the current branch of your forked repository:
- ```
- git push --set-upstream origin new-branch
- ```
- 
-### Step 5: 
-* Create Pull Request,
-At this point, you are ready to make a pull request to the original repository.
+- Make a pull request! (compare your branch with the owner main branch)
+	
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -231,44 +191,56 @@ At this point, you are ready to make a pull request to the original repository.
 <!-- ------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
 
 ## Contributors
-<a href="https://github.com/aman34503/Go-Airbnb"><img src="https://forthebadge.com/images/badges/built-by-developers.svg"  ></a> 
-<a href="https://github.com/aman34503/Go-Airbnb"><img src="https://forthebadge.com/images/badges/built-with-love.svg"  ></a> 
-<a href="https://github.com/aman34503/Go-Airbnb"><img src="https://forthebadge.com/images/badges/built-with-swag.svg" ></a>   
-
-Thanks to all the **people who contribute**
-
-![Contributors](https://contributors-img.web.app/image?repo=aman34503/Go-Airbnb)
-
-
-
+<div align="center">
+<a href="https://github.com/mnnkhndlwl/mern_youtube_clone"><img src="https://forthebadge.com/images/badges/built-by-developers.svg"  ></a> 
+<a href="https://github.com/mnnkhndlwl/mern_youtube_clone"><img src="https://forthebadge.com/images/badges/built-with-love.svg"  ></a> 
+</div>
 <br>
-
+<div>
+<h1 align="center">
+ <b>Thanks to these amazing people
+<h1>
+<a href="https://github.com/mnnkhndlwl/mern_youtube_clone/contributors">
+  <img src="https://contrib.rocks/image?repo=mnnkhndlwl/mern_youtube_clone&&max=817" />
+</a>
+</div>
 <br>
-
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- ------------------------------------------------------------------------------------------------------------------------------------------------------------------ -->
+## Github Beginner Guide
+#### Are you a beginner in using Github?
+
+You can refer to the following articles on the basics of Git and Github and also contact me, in case you are stuck:
+- [Forking a Repo](https://help.github.com/en/github/getting-started-with-github/fork-a-repo)
+- [Cloning a Repo](https://help.github.com/en/desktop/contributing-to-projects/creating-an-issue-or-pull-request)
+- [How to create a Pull Request](https://opensource.com/article/19/7/create-pull-request-github)
+- [Getting started with Git and GitHub](https://towardsdatascience.com/getting-started-with-git-and-github-6fcd0f2d4ac6)
+- [Learn GitHub from Scratch](https://lab.github.com/githubtraining/introduction-to-github)
+	
+	 
+	 <p align="right">(<a href="#top">back to top</a>)</p>
+
+
 <!-- ------------------------------------------------------------------------------------------------------------------------------------------------------------------ -->
   
 ## Feedback
 
 If you have any feedback or suggestions please reach out to maintainers.  
-* [Aman Shrivastava](https://github.com/aman34503) 
+* [Manan khandelwal](https://github.com/mnnkhndlwl) 
   
-Or you can create a  <a href="https://github.com/aman34503/Go-Airbnb/issues">issue</a> and mention there , which features can make this Project more good.
+Or you can create a  <a href="https://github.com/mnnkhndlwl/mern_youtube_clone/issues/new?assignees=&labels=feature%2CReview+Required&template=feature_request.yml&title=%5BFeature%5D%3A+">issue</a> and mention there , which features can make this Project more good.
 
 <!-- ------------------------------------------------------------------------------------------------------------------------------------------------------------------ -->
 
-<br>
   
 <br>
-  
-  
+	 
 <div align="center">
-
-### Show some ❤️ by starring this awesome Repository!
-
+<h3>Show some ❤️ by starring this awesome repository!</h3>
 </div>
+
+### [![Typing SVG](https://readme-typing-svg.herokuapp.com/?lines=Thanks+for+contributing!;&size=30;align=center)](https://git.io/typing-svg)
   
   
 <div id="Bottom"></div>
