@@ -53,6 +53,7 @@
   - [Key Features](#Key-Features)
   - [Screenshots of Website](#Screenshots-of-Websites)
 - [Contribution Guidelines](#Contribution-Guidelines)
+- [Usage](#Usage)
 - [Contributors](#Contributors)
 - [Github Beginner Guide](#Github-Beginner-Guide)
 - [Feedback](#Feedback)
@@ -177,33 +178,105 @@ it is an Issue or a Pull Request.
 ```
 
 ### How to Contribute: 
-- Drop a :star: on the Github repository (optional)<br/>
+
 
 - Before Contribute Please read [CONTRIBUTING.md](https://github.com/mnnkhndlwl/mern_youtube_clone/blob/master/CONTRIBUTING.md) and [CODE_OF_CONDUCT.md](https://github.com/mnnkhndlwl/mern_youtube_clone/blob/master/CODE_OF_CONDUCT.md)
-
-- Create an issue of the project or a feature you would like to add in the project and get the task assigned to you.(Issue can be any bug fixes or any feature you want to add in this project).
-
 - Fork the repo to your Github.<br/>
 
-- Clone the Repo by going to your local Git Client in a particular local folder in your local machine by using this command with your forked repository link in place of below given link: <br/>
-  `git clone https://github.com/mnnkhndlwl/mern_youtube_clone`
-- Create a branch using below command.
-  `git branch <your branch name>`
-- Checkout to your branch.
-  `git checkout <your branch name>`
-- Add your code in your local machine folder.
-  `git add . `
-- Commit your changes.
-  `git commit -m"<add your message here>"`
-- Push your changes.
-  `git push --set-upstream origin <your branch name>`
+- Clone the Forked Repository to your local machine.
+	```
+	git clone https://github.com/ mnnkhndlwl/mern_youtube_clone.git.
+	```
+- Change the directory to mern_youtube_clone.
+	```bash
+	cd mern_youtube_clone
+	```
+- Add remote to the Original Repository.
+	```
+	git remote add upstream https://github.com/mnnkhndlwl/mern_youtube_clone.git
+	```
+- Check the remotes for this repository.
+        ```
+        git remote -v
+        ```
+- Always take a pull from the upstream repository to your master branch to keep it at par with the main project(updated repository).
 
-- Make a pull request! (compare your branch with the owner main branch)
+        ```
+        git pull upstream main
+        ```
+- Create a new branch.
+
+        ```
+        git checkout -b <your_branch_name>
+        ```
+
+- Perform your desired changes to the code base.
+- Track your changes:heavy_check_mark: .
+
+        ```
+        git add . 
+        ```
+- Commit your changes .
+
+        ```
+        git commit -m "Relevant message"
+        ```
+- Push the committed changes in your feature branch to your remote repo.
+        ```
+        git push -u origin <your_branch_name>
+        ```
+- To create a pull request, click on `compare and pull requests`. Please ensure you compare your feature branch to the desired branch of the repository you are supposed to make a PR to.
+
+- Add appropriate title and description to your pull request explaining your changes and efforts done.
+
+
+- Click on `Create Pull Request`.
+
+
+- Voila! You have made a PR to this repo. Sit back patiently and relax while your PR is reviewed
+
 	
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- ------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+## Usage
+Create .env file in the server folder and add the following environment variables:
+```
+# MONGO = 
+# JWT = 
+# PORT = 3001
+```
+Create .env file in the client folder and add the following environment variables, values can be found from firebase project setup
+```
+# REACT_APP_FIREBASE_KEY = 
+# GENERATE_SOURCEMAP=false
+```
+### Install dependencies
+
+```
+# Backend deps
+cd server
+npm install
+# client deps
+cd client
+npm install
+```
+### Run Server
+```
+# Backend Server (Local)
+cd server
+npm start
+
+# client Server (Local)
+cd client
+npm start
+```
+
+you need to setup new project in firebase and enable storage and signin with google option
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
 <!-- ------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
 
 ## Contributors
