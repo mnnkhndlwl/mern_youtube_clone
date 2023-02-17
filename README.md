@@ -200,24 +200,19 @@ it is an Issue or a Pull Request.
         git remote -v
         ```
 - Always take a pull from the upstream repository to your master branch to keep it at par with the main project(updated repository).
-
         ```
         git pull upstream main
         ```
 - Create a new branch.
-
         ```
         git checkout -b <your_branch_name>
         ```
-
 - Perform your desired changes to the code base.
 - Track your changes:heavy_check_mark: .
-
         ```
         git add . 
         ```
 - Commit your changes .
-
         ```
         git commit -m "Relevant message"
         ```
@@ -253,7 +248,6 @@ Create .env file in the client folder and add the following environment variable
 # GENERATE_SOURCEMAP=false
 ```
 ### Install dependencies
-
 ```
 # Backend deps
 cd server
