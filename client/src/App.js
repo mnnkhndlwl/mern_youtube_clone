@@ -10,6 +10,7 @@ import SignIn from "./pages/SignIn";
 import Search from "./pages/Search";
 import { useSelector } from "react-redux";
 import { useSwipeable } from 'react-swipeable'
+import useNetworkStatus from "./utils/useNetworkStatus";
 
 const Container = styled.div`
   display: flex;
@@ -32,6 +33,18 @@ const Wrapper = styled.div`
   padding: 22px 96px;
 `;
 
+const NetworkStatus = styled.div`
+  background-color: #fff3cd;
+  border: 1px solid #ffeeba;
+  padding: 28px;
+  text-align: center;
+  border-radius: 10px;
+  color: #856404;
+  font-weight: bold;
+  margin : 10px;
+  z-index:10px
+`;
+
 
 function App() {
   const [darkMode, setDarkMode] = useState(true);
@@ -46,8 +59,11 @@ function App() {
     onSwipedRight: handleToggle,
   });
   const { currentUser } = useSelector((state) => state.user);
+  const status = useNetworkStatus()
+
   return (
     <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
+    {status ? null : <NetworkStatus>You are currently Offline !</NetworkStatus>}
     <Container >
     <BrowserRouter>
     <Menu darkMode={darkMode} setDarkMode={setDarkMode}/>
