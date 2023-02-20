@@ -6,6 +6,7 @@ import { Link,useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import VideoCallOutlinedIcon from "@mui/icons-material/VideoCallOutlined";
 import Upload from "./Upload";
+import Model from "./Model";
 
 const Container = styled.div`
   width : 100%;
@@ -66,6 +67,7 @@ const User = styled.div`
   align-items: center;
   gap: 10px;
   font-weight: 500;
+  cursor: pointer;
   color: ${({ theme }) => theme.text};
 `;
 
@@ -77,12 +79,14 @@ const Avatar = styled.img`
 `;
 
 
+
 const Navbar = () => {
 
   const navigate = useNavigate()
   const [open, setOpen] = useState(false);
   const [q, setQ] = useState("");
-  const { currentUser } = useSelector(state=>state.user)
+  const { currentUser } = useSelector(state => state.user)
+  const [openModal, setModel] = useState(false);
 
   return (
     <>
@@ -92,11 +96,19 @@ const Navbar = () => {
           <Input placeholder="Search" onChange={(e) => setQ(e.target.value)} />
           <SearchOutlinedIcon onClick={()=>navigate(`/search?q=${q}`)}/>
         </Search>
-        { currentUser ? ( <User>
+        { currentUser ? (
+          <>
+          <User onClick={()=>setModel(!openModal)}>
               <VideoCallOutlinedIcon onClick={() => setOpen(true)}/>
               <Avatar src={currentUser.img} />
               {currentUser.name}
-            </User> ) :  (
+          </User>
+            {openModal && <Model  />}  
+              
+         
+          </>
+          
+          ) : (
           <Link to="signin" style={{ textDecoration: "none"}}>
           <Button>
             <AccountCircleOutlinedIcon />

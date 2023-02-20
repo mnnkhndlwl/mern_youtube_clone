@@ -10,11 +10,16 @@ import { getAuth, GoogleAuthProvider } from "firebase/auth";
 const firebaseConfig = {
   
   apiKey: process.env.REACT_APP_FIREBASE_KEY,
-  authDomain: "fir-51a74.firebaseapp.com",
-  projectId: "fir-51a74",
-  storageBucket: "fir-51a74.appspot.com",
-  messagingSenderId: "377093495071",
-  appId: "1:377093495071:web:ad000dafa3ccddc3cf382a"
+  // authDomain: "fir-51a74.firebaseapp.com",
+  // projectId: "fir-51a74",
+  // storageBucket: "fir-51a74.appspot.com",
+  // messagingSenderId: "377093495071",
+  // appId: "1:377093495071:web:ad000dafa3ccddc3cf382a"
+  authDomain: "test-72576.firebaseapp.com",
+  projectId: "test-72576",
+  storageBucket: "test-72576.appspot.com",
+  messagingSenderId: "1027253522132",
+  appId: "1:1027253522132:web:5845773db04a0b95f17541"
 };
 
 // Initialize Firebase
