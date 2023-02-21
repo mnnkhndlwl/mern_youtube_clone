@@ -1,0 +1,12 @@
+.material-symbols-rounded{
+  color: "#000000";
+  font-weight: 200;
+}
+
+.material-symbols-rounded.active{
+  font-variation-settings: 
+  'FILL' 1,
+  'wght' 300,
+  'GRAD' 0,
+  'opsz' 48;
+}
