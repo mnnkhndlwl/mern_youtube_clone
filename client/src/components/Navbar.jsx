@@ -14,7 +14,7 @@ const Container = styled.div`
   top: 0;
   background-color: ${({ theme }) => theme.bgLighter};
   height: 56px;
-
+  z-index: 100;
 `;
 
 const Wrapper = styled.div`
