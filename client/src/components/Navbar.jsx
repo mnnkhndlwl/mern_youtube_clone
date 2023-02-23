@@ -1,15 +1,17 @@
-import React,{ useState} from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
-import { Link,useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import VideoCallOutlinedIcon from "@mui/icons-material/VideoCallOutlined";
 import Upload from "./Upload";
 import Model from "./Model";
 
 const Container = styled.div`
-  width : 100%;
+  padding-top: 5px;
+  padding-bottom: 15px;
+  width: 100%;
   position: sticky;
   top: 0;
   background-color: ${({ theme }) => theme.bgLighter};
@@ -27,6 +29,7 @@ const Wrapper = styled.div`
 `;
 
 const Search = styled.div`
+  background-color: #333;
   width: 40%;
   position: absolute;
   left: 0px;
@@ -35,16 +38,18 @@ const Search = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 5px;
+  padding-left: 10px;
   border: 1px solid #ccc;
-  border-radius: 3px;
+  border-radius: 30px;
   color: ${({ theme }) => theme.text};
 `;
 
 const Input = styled.input`
-  border: none;
+  width: 100%;
   background-color: transparent;
   outline: none;
+  font-size: 15px;
+  border: none;
   color: ${({ theme }) => theme.text};
 `;
 
@@ -59,7 +64,14 @@ const Button = styled.button`
   display: flex;
   align-items: center;
   gap: 5px;
- 
+`;
+
+const SearchButton = styled.div`
+  background-color: #222;
+  padding: 10px;
+  border-radius: 0 30px 30px 0;
+  padding-right: 30px;
+  padding-left: 30px;
 `;
 
 const User = styled.div`
@@ -78,47 +90,46 @@ const Avatar = styled.img`
   background-color: #999;
 `;
 
-
-
 const Navbar = () => {
-
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [q, setQ] = useState("");
-  const { currentUser } = useSelector(state => state.user)
+  const { currentUser } = useSelector((state) => state.user);
   const [openModal, setModel] = useState(false);
 
   return (
     <>
-    <Container>
-      <Wrapper>
-        <Search>
-          <Input placeholder="Search" onChange={(e) => setQ(e.target.value)} />
-          <SearchOutlinedIcon onClick={()=>navigate(`/search?q=${q}`)}/>
-        </Search>
-        { currentUser ? (
-          <>
-          <User onClick={()=>setModel(!openModal)}>
-              <VideoCallOutlinedIcon onClick={() => setOpen(true)}/>
-              <Avatar src={currentUser.img} />
-              {currentUser.name}
-          </User>
-            {openModal && <Model  />}  
-              
-         
-          </>
-          
+      <Container>
+        <Wrapper>
+          <Search>
+            <Input
+              placeholder="Search"
+              onChange={(e) => setQ(e.target.value)}
+            />
+            <SearchButton>
+              <SearchOutlinedIcon onClick={() => navigate(`/search?q=${q}`)} />
+            </SearchButton>
+          </Search>
+          {currentUser ? (
+            <>
+              <User onClick={() => setModel(!openModal)}>
+                <VideoCallOutlinedIcon onClick={() => setOpen(true)} />
+                <Avatar src={currentUser.img} />
+                {currentUser.name}
+              </User>
+              {openModal && <Model />}
+            </>
           ) : (
-          <Link to="signin" style={{ textDecoration: "none"}}>
-          <Button>
-            <AccountCircleOutlinedIcon />
-            SIGN IN
-          </Button>
-        </Link>
-        )}
-      </Wrapper>
-    </Container>
-    {open && <Upload setOpen={setOpen} />}         
+            <Link to="signin" style={{ textDecoration: "none" }}>
+              <Button>
+                <AccountCircleOutlinedIcon />
+                SIGN IN
+              </Button>
+            </Link>
+          )}
+        </Wrapper>
+      </Container>
+      {open && <Upload setOpen={setOpen} />}
     </>
   );
 };
