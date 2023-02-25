@@ -16,7 +16,6 @@ import { subscription } from "../redux/userSlice";
 import Recommendation from "../components/Recommendation";
 import { publicRequest, userRequest } from "../config";
 import LoadingSpinner from "../utils/spinner";
-import SignIn from "./SignIn";
 
 const Container = styled.div`
   display: flex;
