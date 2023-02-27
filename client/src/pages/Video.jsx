@@ -101,7 +101,7 @@ const Description = styled.p`
 `;
 
 const Subscribe = styled.button`
-  background-color: #cc1a00;
+  background-color:  ${props => (props.isSubscribed ? '#a1a6ad' : '#cc1a00')};
   font-weight: 500;
   color: white;
   border: none;
@@ -236,7 +236,7 @@ const Video = () => {
                 <Description>{currentVideo.desc}</Description>
               </ChannelDetail>
             </ChannelInfo>
-            <Subscribe onClick={handleSub}>
+            <Subscribe onClick={handleSub} isSubscribed={currentUser?.subscribedUsers?.includes(channel._id)?true:false}>
               {currentUser?.subscribedUsers?.includes(channel._id)
                 ? "SUBSCRIBED"
                 : "SUBSCRIBE"}
