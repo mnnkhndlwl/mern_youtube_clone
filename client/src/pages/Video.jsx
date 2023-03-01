@@ -16,6 +16,8 @@ import { subscription } from "../redux/userSlice";
 import Recommendation from "../components/Recommendation";
 import { publicRequest, userRequest } from "../config";
 import LoadingSpinner from "../utils/spinner";
+import Snackbar from '@mui/material/Snackbar';
+
 
 const Container = styled.div`
   display: flex;
@@ -118,6 +120,7 @@ const VideoFrame = styled.video`
 `;
 
 const Video = () => {
+  const [open, setOpen] = useState(false);
   const { currentUser } = useSelector((state) => state.user);
 
   const { currentVideo,loading } = useSelector((state) => state.video);
@@ -178,10 +181,24 @@ const Video = () => {
     }
   };
 
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+  const handleShare = async () => {
+    await window.navigator.clipboard.writeText(window.location.href);
+    setOpen(true);
+  }
+
   return (
     <>
     {
       loading ? <LoadingSpinner /> : 
+      <>
       <Container>
         <Content>
           <VideoWrapper>
@@ -209,7 +226,7 @@ const Video = () => {
                 )}{" "}
                 Dislike
               </Button>
-              <Button>
+              <Button onClick={handleShare}>
                 <ReplyOutlinedIcon /> Share
               </Button>
               <Button>
@@ -247,6 +264,13 @@ const Video = () => {
         </Content>
         <Recommendation tags={currentVideo.tags} />
       </Container>
+      <Snackbar
+        open={open}
+        autoHideDuration={1600}
+        onClose={handleClose}
+        message="Link Copied"
+      />
+      </>
     }
     </>
   );
