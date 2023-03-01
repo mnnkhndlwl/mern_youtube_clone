@@ -120,6 +120,7 @@ const VideoFrame = styled.video`
 `;
 
 const Video = () => {
+  const [isHovering, setIsHovering] = useState(false);
   const { currentUser } = useSelector((state) => state.user);
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
@@ -188,6 +189,14 @@ const Video = () => {
     enqueueSnackbar('Share Link is copied!', { variant: "success" });
   }
 
+  const handleMouseEnter = () => {
+    setIsHovering(true);
+  }
+
+  const handleMouseLeave = () => {
+    setIsHovering(false);
+  }
+
   return (
     <>
     {
@@ -220,8 +229,13 @@ const Video = () => {
                 )}{" "}
                 Dislike
               </Button>
-              <Button onClick={handleShare}>
-                <ReplyOutlinedIcon /> Share
+              <Button onClick={handleShare} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} style={{
+                fontWeight: isHovering ? "500" : "normal",
+                fontSize: isHovering ? "1.05rem" : "",
+                transform: isHovering ? "rotate(-2deg)" : "",
+                color: isHovering ? "lightgreen" : "",
+              }}>
+                <ReplyOutlinedIcon/> Share
               </Button>
               <Button>
                 <AddTaskOutlinedIcon /> Save
