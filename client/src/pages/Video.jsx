@@ -16,7 +16,7 @@ import { subscription } from "../redux/userSlice";
 import Recommendation from "../components/Recommendation";
 import { publicRequest, userRequest } from "../config";
 import LoadingSpinner from "../utils/spinner";
-import Snackbar from '@mui/material/Snackbar';
+import { useSnackbar } from 'notistack';
 
 
 const Container = styled.div`
@@ -120,8 +120,9 @@ const VideoFrame = styled.video`
 `;
 
 const Video = () => {
-  const [open, setOpen] = useState(false);
   const { currentUser } = useSelector((state) => state.user);
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+
 
   const { currentVideo,loading } = useSelector((state) => state.video);
   const navigate = useNavigate()
@@ -181,17 +182,10 @@ const Video = () => {
     }
   };
 
-  const handleClose = (event, reason) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-
-    setOpen(false);
-  };
 
   const handleShare = async () => {
     await window.navigator.clipboard.writeText(window.location.href);
-    setOpen(true);
+    enqueueSnackbar('Share Link is copied!', { variant: "success" });
   }
 
   return (
@@ -264,12 +258,6 @@ const Video = () => {
         </Content>
         <Recommendation tags={currentVideo.tags} />
       </Container>
-      <Snackbar
-        open={open}
-        autoHideDuration={1600}
-        onClose={handleClose}
-        message="Link Copied"
-      />
       </>
     }
     </>
