@@ -69,14 +69,10 @@ function App() {
       )}
       <Container>
         <BrowserRouter>
+          <Menu isOpen={isOpen} darkMode={darkMode} setDarkMode={setDarkMode} />
           <Main>
             <Navbar handleToggle={handleToggle} />
             <Main>
-              <Menu
-                isOpen={isOpen}
-                darkMode={darkMode}
-                setDarkMode={setDarkMode}
-              />
               <Wrapper>
                 <Routes>
                   <Route path="/">

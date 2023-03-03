@@ -107,12 +107,12 @@ const Navbar = ({handleToggle}) => {
     <>
       <Container>
         <Wrapper>
-          <div style={{display:'flex', alignItems:'center'}}>
-            <MenuIcon style={{ color: "white", fontSize: "35px" }} onClick={()=>handleToggle()}/>
+          <div style={{display:'flex', alignItems:'center', gap: "10px"}}>
+            <MenuIcon style={{ color: "white", fontSize: "25px", cursor: "pointer" }} onClick={()=>handleToggle()}/>
             <Link to="/" style={{textDecoration:'none'}}>
               <Logo style={{display:'flex', alignItems:'center', gap:'10px'}}>
-                <img src={logo} alt="logo" />
-                VideoTube
+                <img src={logo} alt="logo" style={{width: '30px'}} />
+                <h1 style={{color: 'white', fontSize: '25px'}}>VideoTube</h1>
               </Logo>
             </Link>
           </div>
