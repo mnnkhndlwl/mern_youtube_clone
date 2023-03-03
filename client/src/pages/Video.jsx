@@ -128,6 +128,10 @@ const Video = () => {
 
   const [channel, setChannel] = useState({});
 
+
+  const [videoLoaded, setVideoLoaded] = useState(false);
+
+
   useEffect(() => {
     console.log("pathin use");
     const fetchData = async () => {
@@ -175,6 +179,12 @@ const Video = () => {
     }
   };
 
+
+  const handleVideoLoad = () => {
+    setVideoLoaded(true);
+  };
+
+
   return (
     <>
     {
@@ -182,8 +192,15 @@ const Video = () => {
       <Container>
         <Content>
           <VideoWrapper>
-            <VideoFrame src={currentVideo.videoUrl} controls />
-          </VideoWrapper>
+          {!videoLoaded && <LoadingSpinner />}
+          <div style={{ display: videoLoaded ? "block" : "none" }}>
+            <VideoFrame
+              src={currentVideo.videoUrl}
+              controls
+              onLoad={handleVideoLoad}
+            />
+          </div>
+        </VideoWrapper>
           <Title>{currentVideo.title}</Title>
           <Details>
             <Info>
