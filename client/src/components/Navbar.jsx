@@ -7,6 +7,8 @@ import { useSelector } from "react-redux";
 import VideoCallOutlinedIcon from "@mui/icons-material/VideoCallOutlined";
 import Upload from "./Upload";
 import Model from "./Model";
+import MenuIcon from "@mui/icons-material/Menu";
+import logo from "../img/logo.png";
 
 const Container = styled.div`
   padding-top: 5px;
@@ -22,7 +24,7 @@ const Container = styled.div`
 const Wrapper = styled.div`
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
   height: 100%;
   padding: 0px 20px;
   position: relative;
@@ -90,17 +92,30 @@ const Avatar = styled.img`
   background-color: #999;
 `;
 
-const Navbar = () => {
+const Navbar = ({handleToggle}) => {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [q, setQ] = useState("");
   const { currentUser } = useSelector((state) => state.user);
   const [openModal, setModel] = useState(false);
 
+  const Logo = styled.div`
+    width: 150px;
+  `;
+
   return (
     <>
       <Container>
         <Wrapper>
+          <div style={{display:'flex', alignItems:'center'}}>
+            <MenuIcon style={{ color: "white", fontSize: "35px" }} onClick={()=>handleToggle()}/>
+            <Link to="/" style={{textDecoration:'none'}}>
+              <Logo style={{display:'flex', alignItems:'center', gap:'10px'}}>
+                <img src={logo} alt="logo" />
+                VideoTube
+              </Logo>
+            </Link>
+          </div>
           <Search>
             <Input
               placeholder="Search"

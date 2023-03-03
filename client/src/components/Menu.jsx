@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import logo from "../img/logo.png";
 import HomeIcon from "@mui/icons-material/Home";
@@ -24,14 +24,18 @@ import { logout } from "../redux/userSlice";
 import { useDispatch } from "react-redux";
 
 const Container = styled.div`
-  flex: 1;
-  background-color: ${({ theme }) => theme.bgLighter};
-  height: 100%;
-  color: ${({ theme }) => theme.text};
-  font-size: 15px;
-  position: sticky;
-  top: 0;
+  padding: 20px 20px;
+  position: relative;
+  top: 56px;
+  z-index: 100;
 `;
+// flex: 1;
+// background-color: ${({ theme }) => theme.bgLighter};
+// height: 100%;
+// color: ${({ theme }) => theme.text};
+// font-size: 15px;
+// position: sticky;
+// top: 0;
 
 const Logo = styled.div`
   display: flex;
@@ -48,10 +52,9 @@ const Img = styled.img`
 const Item = styled.div`
   display: flex;
   align-items: center;
-  gap: 20px;
   cursor: pointer;
   padding: 7.5px 0px;
-
+  gap: 10px;
   &:hover {
     background-color: ${({ theme }) => theme.soft};
   }
@@ -88,12 +91,11 @@ const Title = styled.h2`
   margin-bottom: 20px;
 `;
 
-const Menu = ({ darkMode, setDarkMode }) => {
+const Menu = ({ darkMode, setDarkMode, isOpen }) => {
   const { currentUser } = useSelector((state) => state.user);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
 
   const handleLogout = async (e) => {
     e.preventDefault();
@@ -106,117 +108,174 @@ const Menu = ({ darkMode, setDarkMode }) => {
     }
   };
 
+  const menuItem = [
+    {
+      path: "/",
+      name: "Home",
+      icon: <HomeIcon />,
+    },
+    {
+      path: "/explore",
+      name: "Explore",
+      icon: <ExploreOutlinedIcon />,
+    },
+    {
+      path: "/subscriptions",
+      name: "Subscriptions",
+      icon: <SubscriptionsOutlinedIcon />,
+    },
+    {
+      path: "/library",
+      name: "Library",
+      icon: <VideoLibraryOutlinedIcon />,
+    },
+    {
+      path: "/history",
+      name: "History",
+      icon: <HistoryOutlinedIcon />,
+    },
+  ];
   return (
-    <Container>
-      <Wrapper>
-    <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
-          <Logo >
-            <Img src={logo} />
-            VideoTube
-          </Logo>
-        </Link>
-        
-        <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
-          <Item>
-            <HomeIcon />
-            Home
-          </Item>
-        </Link>
-        <Link to="trends" style={{ textDecoration: "none", color: "inherit" }}>
-          <Item>
-            <ExploreOutlinedIcon />
-            Explore
-          </Item>
-        </Link>
-        <Link
-          to="subscriptions"
-          style={{ textDecoration: "none", color: "inherit" }}
-        >
-          <Item>
-            <SubscriptionsOutlinedIcon />
-            Subscriptions
-          </Item>
-        </Link>
-        <Hr />
-        <Item>
-          <VideoLibraryOutlinedIcon />
-          Library
-        </Item>
-        <Item>
-          <HistoryOutlinedIcon />
-          History
-        </Item>
-        <Hr />
-        {currentUser ? (
-          <>
-            <Button className="btn1" onClick={handleLogout}>
-              <ExitToAppIcon />
-              Log Out
-            </Button>
-          </>
-        ) : (
-          <>
-            <Login>
-              Sign in to like videos, comment, and subscribe.
-              <Link to="signin" style={{ textDecoration: "none" }}>
-                <Button>
-                  <AccountCircleOutlinedIcon />
-                  SIGN IN
-                </Button>
-              </Link>
-            </Login>
-          </>
-        )}
-        <Hr />
-        <Title>BEST Categories</Title>
-        <Item>
-          <LibraryMusicOutlinedIcon />
-          Music
-        </Item>
-        <Item>
-          <SportsBasketballOutlinedIcon />
-          Sports
-        </Item>
-        <Item>
-          <SportsEsportsOutlinedIcon />
-          Gaming
-        </Item>
-        <Item>
-          <MovieOutlinedIcon />
-          Movies
-        </Item>
-        <Item>
-          <ArticleOutlinedIcon />
-          News
-        </Item>
-        <Item>
-          <LiveTvOutlinedIcon />
-          Live
-        </Item>
-        <Hr />
-        <Link
-          to="settings"
-          style={{ textDecoration: "none", color: "inherit" }}
-        >
-          <Item>
-            <SettingsOutlinedIcon />
-            your videos
-          </Item>
-        </Link>
-        <Item>
-          <FlagOutlinedIcon />
-          Report
-        </Item>
-        <Item>
-          <HelpOutlineOutlinedIcon />
-          Help
-        </Item>
-        <Item onClick={() => setDarkMode(!darkMode)}>
-          <SettingsBrightnessOutlinedIcon />
-          {darkMode ? "Light" : "Dark"} Mode
-        </Item>
-      </Wrapper>
-    </Container>
+    <>
+      <Container>
+        <div style={{ width: isOpen ? "200px" : "30px" }}>
+          {/* <div className="top_section">
+              <div>
+                <button onClick={() => toggle()}>bb</button>
+                <div
+                  style={{ display: isOpen ? "block" : "none" }}
+                  className="logo"
+                >
+                  Logo
+                </div>
+              </div>
+            </div> */}
+          {menuItem.map((item, index) => (
+            <Link to={item.path} key={index}>
+              <Item>
+                <div className="icon">{item.icon}</div>
+                <div
+                  style={{ display: isOpen ? "block" : "none" }}
+                  className="link_text"
+                >
+                  {item.name}
+                </div>
+              </Item>
+            </Link>
+          ))}
+        </div>
+      </Container>
+    </>
+    // <Container>
+    //   <Wrapper>
+    //     <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
+    //       <Logo>
+    //         <Img src={logo} />
+    //         VideoTube
+    //       </Logo>
+    //     </Link>
+
+    //     <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
+    //       <Item>
+    //         <HomeIcon />
+    //         Home
+    //       </Item>
+    //     </Link>
+    //     <Link to="trends" style={{ textDecoration: "none", color: "inherit" }}>
+    //       <Item>
+    //         <ExploreOutlinedIcon />
+    //         Explore
+    //       </Item>
+    //     </Link>
+    //     <Link
+    //       to="subscriptions"
+    //       style={{ textDecoration: "none", color: "inherit" }}
+    //     >
+    //       <Item>
+    //         <SubscriptionsOutlinedIcon />
+    //         Subscriptions
+    //       </Item>
+    //     </Link>
+    //     <Hr />
+    //     <Item>
+    //       <VideoLibraryOutlinedIcon />
+    //       Library
+    //     </Item>
+    //     <Item>
+    //       <HistoryOutlinedIcon />
+    //       History
+    //     </Item>
+    //     <Hr />
+    //     {currentUser ? (
+    //       <>
+    //         <Button className="btn1" onClick={handleLogout}>
+    //           <ExitToAppIcon />
+    //           Log Out
+    //         </Button>
+    //       </>
+    //     ) : (
+    //       <>
+    //         <Login>
+    //           Sign in to like videos, comment, and subscribe.
+    //           <Link to="signin" style={{ textDecoration: "none" }}>
+    //             <Button>
+    //               <AccountCircleOutlinedIcon />
+    //               SIGN IN
+    //             </Button>
+    //           </Link>
+    //         </Login>
+    //       </>
+    //     )}
+    //     <Hr />
+    //     <Title>BEST Categories</Title>
+    //     <Item>
+    //       <LibraryMusicOutlinedIcon />
+    //       Music
+    //     </Item>
+    //     <Item>
+    //       <SportsBasketballOutlinedIcon />
+    //       Sports
+    //     </Item>
+    //     <Item>
+    //       <SportsEsportsOutlinedIcon />
+    //       Gaming
+    //     </Item>
+    //     <Item>
+    //       <MovieOutlinedIcon />
+    //       Movies
+    //     </Item>
+    //     <Item>
+    //       <ArticleOutlinedIcon />
+    //       News
+    //     </Item>
+    //     <Item>
+    //       <LiveTvOutlinedIcon />
+    //       Live
+    //     </Item>
+    //     <Hr />
+    //     <Link
+    //       to="settings"
+    //       style={{ textDecoration: "none", color: "inherit" }}
+    //     >
+    //       <Item>
+    //         <SettingsOutlinedIcon />
+    //         your videos
+    //       </Item>
+    //     </Link>
+    //     <Item>
+    //       <FlagOutlinedIcon />
+    //       Report
+    //     </Item>
+    //     <Item>
+    //       <HelpOutlineOutlinedIcon />
+    //       Help
+    //     </Item>
+    //     <Item onClick={() => setDarkMode(!darkMode)}>
+    //       <SettingsBrightnessOutlinedIcon />
+    //       {darkMode ? "Light" : "Dark"} Mode
+    //     </Item>
+    //   </Wrapper>
+    // </Container>
   );
 };
 
