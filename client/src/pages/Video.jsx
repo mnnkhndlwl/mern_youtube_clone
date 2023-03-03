@@ -16,6 +16,8 @@ import { subscription } from "../redux/userSlice";
 import Recommendation from "../components/Recommendation";
 import { publicRequest, userRequest } from "../config";
 import LoadingSpinner from "../utils/spinner";
+import { useSnackbar } from 'notistack';
+
 
 const Container = styled.div`
   display: flex;
@@ -101,7 +103,7 @@ const Description = styled.p`
 `;
 
 const Subscribe = styled.button`
-  background-color: #cc1a00;
+  background-color:  ${props => (props.isSubscribed ? '#a1a6ad' : '#cc1a00')};
   font-weight: 500;
   color: white;
   border: none;
@@ -118,7 +120,10 @@ const VideoFrame = styled.video`
 `;
 
 const Video = () => {
+  const [isHovering, setIsHovering] = useState(false);
   const { currentUser } = useSelector((state) => state.user);
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+
 
   const { currentVideo,loading } = useSelector((state) => state.video);
   const navigate = useNavigate()
@@ -159,6 +164,9 @@ const Video = () => {
   };
 
   const handleSub = async () => {
+    if(!currentUser){
+      alert("Please login to subscribe to this channel.")
+    }
     currentUser.subscribedUsers.includes(channel._id)
       ? await userRequest.put(`/api/users/unsub/${channel._id}`)
       : await userRequest.put(`/api/users/sub/${channel._id}`);
@@ -175,10 +183,25 @@ const Video = () => {
     }
   };
 
+
+  const handleShare = async () => {
+    await window.navigator.clipboard.writeText(window.location.href);
+    enqueueSnackbar('Share Link is copied!', { variant: "success" });
+  }
+
+  const handleMouseEnter = () => {
+    setIsHovering(true);
+  }
+
+  const handleMouseLeave = () => {
+    setIsHovering(false);
+  }
+
   return (
     <>
     {
       loading ? <LoadingSpinner /> : 
+      <>
       <Container>
         <Content>
           <VideoWrapper>
@@ -206,8 +229,13 @@ const Video = () => {
                 )}{" "}
                 Dislike
               </Button>
-              <Button>
-                <ReplyOutlinedIcon /> Share
+              <Button onClick={handleShare} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} style={{
+                fontWeight: isHovering ? "500" : "normal",
+                fontSize: isHovering ? "1.05rem" : "",
+                transform: isHovering ? "rotate(-2deg)" : "",
+                color: isHovering ? "lightgreen" : "",
+              }}>
+                <ReplyOutlinedIcon/> Share
               </Button>
               <Button>
                 <AddTaskOutlinedIcon /> Save
@@ -233,7 +261,7 @@ const Video = () => {
                 <Description>{currentVideo.desc}</Description>
               </ChannelDetail>
             </ChannelInfo>
-            <Subscribe onClick={handleSub}>
+            <Subscribe onClick={handleSub} isSubscribed={currentUser?.subscribedUsers?.includes(channel._id)?true:false}>
               {currentUser?.subscribedUsers?.includes(channel._id)
                 ? "SUBSCRIBED"
                 : "SUBSCRIBE"}
@@ -244,6 +272,7 @@ const Video = () => {
         </Content>
         <Recommendation tags={currentVideo.tags} />
       </Container>
+      </>
     }
     </>
   );

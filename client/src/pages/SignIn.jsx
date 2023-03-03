@@ -141,6 +141,8 @@ const SignIn = () => {
     setError('')
   }
 
+  console.log(loading)
+
   return (
     <>
     {
