@@ -9,21 +9,22 @@ import Video from "./pages/Video";
 import SignIn from "./pages/SignIn";
 import Search from "./pages/Search";
 import { useSelector } from "react-redux";
-import { useSwipeable } from "react-swipeable";
+// import { useSwipeable } from "react-swipeable";
 import useNetworkStatus from "./utils/useNetworkStatus";
 import Profile from "./pages/Profile";
+
 const Container = styled.div`
   display: flex;
 `;
 
-const SwipeContainer = styled.div`
-  ${
-    "" /* background-color: ${({ theme }) => theme.bg};
- &.open {
-    display : none;
-  } */
-  }
-`;
+// const SwipeContainer = styled.div`
+//   ${
+//     "" /* background-color: ${({ theme }) => theme.bg};
+//  &.open {
+//     display : none;
+//   } */
+//   }
+// `;
 
 const Main = styled.div`
   // flex: 7;
@@ -55,10 +56,11 @@ function App() {
     setIsOpen(!isOpen);
   };
 
-  const swipeHandlers = useSwipeable({
-    onSwipedLeft: handleToggle,
-    onSwipedRight: handleToggle,
-  });
+  // const swipeHandlers = useSwipeable({
+  //   onSwipedLeft: handleToggle,
+  //   onSwipedRight: handleToggle,
+  // });
+
   const { currentUser } = useSelector((state) => state.user);
   const status = useNetworkStatus();
 
