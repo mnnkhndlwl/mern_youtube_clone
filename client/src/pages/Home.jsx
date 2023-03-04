@@ -1,21 +1,22 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Card from "../components/Card";
+import Menu from "../components/Menu";
 import { publicRequest, userRequest } from "../config";
 import LoadingSpinner from "../utils/spinner";
 
 const Container = styled.div`
-display:grid;
-grid-template-columns: repeat(3, auto);
-grid-gap: 2rem;
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  grid-gap: 2rem;
 `;
 
 const Home = ({ type }) => {
   const [videos, setVideos] = useState([]);
-  const [loading,setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     const fetchVideos = async () => {
-      setLoading(true)
+      setLoading(true);
       if (type === "sub") {
         const res = await userRequest.get(`/api/videos/${type}`);
         setVideos(res.data);
@@ -26,18 +27,20 @@ const Home = ({ type }) => {
         const res = await publicRequest.get(`/api/videos/${type}`);
         setVideos(res.data);
       }
-      setLoading(false)
+      setLoading(false);
     };
     fetchVideos();
   }, [type]);
 
   return (
-    <Container>
-      {loading && <LoadingSpinner />}
-      {videos.map((video) => (
-        <Card key={video._id} video={video} />
-      ))}
-    </Container>
+    <>
+      <Container>
+        {loading && <LoadingSpinner />}
+        {videos.map((video) => (
+          <Card key={video._id} video={video} />
+        ))}
+      </Container>
+    </>
   );
 };
 
