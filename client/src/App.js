@@ -12,6 +12,7 @@ import { useSelector } from "react-redux";
 // import { useSwipeable } from "react-swipeable";
 import useNetworkStatus from "./utils/useNetworkStatus";
 import Profile from "./pages/Profile";
+
 const Container = styled.div`
   display: flex;
 `;
