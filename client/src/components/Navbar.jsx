@@ -147,8 +147,8 @@ const Navbar = ({handleToggle}) => {
               placeholder="Search"
               onChange={(e) => setQ(e.target.value)}
               onSelect={() => {
-                document.getElementById('search-bar').style.border = "1px solid blue";
-                document.getElementById('search-btn').style.borderLeft = "1px solid blue";
+                document.getElementById('search-bar').style.border = "2px solid rgb(26, 70, 130)";
+                document.getElementById('search-btn').style.borderLeft = "1px solid rgb(26, 70, 130)";
               }}
             />
 
