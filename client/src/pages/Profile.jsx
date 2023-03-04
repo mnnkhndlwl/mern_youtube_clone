@@ -4,10 +4,6 @@ import { userRequest } from '../config';
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { updateStart, updateFailure, updateSuccess } from "../redux/userSlice";
-import { unstable_batchedUpdates } from 'react-dom';
-
-const API_KEY = `6d207e02198a847aa98d0a2a901485a5`;
-const REQ_URL = `https://freeimage.host/api/1/upload`;
 
 const ProfileModel = styled.div`
  height: calc(100vh - 56px);
@@ -72,7 +68,7 @@ const Profile = () => {
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [avatar, setAvatar] = useState('');
+  // const [avatar, setAvatar] = useState('');
   const [avatarPrev, setAvatarPrev] = useState('');
   const [error, setError] = useState('');
 
@@ -125,7 +121,7 @@ const Profile = () => {
     Reader.onload = () => {
       if (Reader.readyState === 2) {
         setAvatarPrev(Reader.result);
-        setAvatar(Reader.result);
+        // setAvatar(Reader.result);
       }
     };
   };

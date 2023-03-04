@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Card from "../components/Card";
-import Menu from "../components/Menu";
 import { publicRequest, userRequest } from "../config";
 import LoadingSpinner from "../utils/spinner";
 

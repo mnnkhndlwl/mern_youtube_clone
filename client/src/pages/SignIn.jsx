@@ -102,7 +102,7 @@ const SignIn = () => {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      const res = await publicRequest.post("/api/auth/signup", {
+      await publicRequest.post("/api/auth/signup", {
         name,
         password,
         email,
