@@ -139,8 +139,8 @@ const Menu = ({ darkMode, setDarkMode, isOpen }) => {
               </>
             ) : (
               <>
-                <Login>
-                  Sign in to like videos, comment, and subscribe.
+                <Login className="signin">
+                  <Item>Sign in to like videos, comment, and subscribe.</Item>
                   <Link to="signin" style={{ textDecoration: "none" }}>
                     <Button>
                       <AccountCircleOutlinedIcon />
