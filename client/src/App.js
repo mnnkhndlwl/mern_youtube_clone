@@ -15,6 +15,12 @@ import Profile from "./pages/Profile";
 
 const Container = styled.div`
   display: flex;
+
+  @media (max-width: 480px) {
+    overflow-x: hidden;
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
 // const SwipeContainer = styled.div`
@@ -30,10 +36,17 @@ const Main = styled.div`
   // flex: 7;
   width: 100%;
   background-color: ${({ theme }) => theme.bg};
+  /* padding:0;
+  margin:0 */
 `;
 
 const Wrapper = styled.div`
+  padding: 0;
+  /* gap: 0; */
   padding: 22px 96px;
+  @media (max-width: 480px) {
+    padding: 0;
+  }
 `;
 
 const NetworkStatus = styled.div`
