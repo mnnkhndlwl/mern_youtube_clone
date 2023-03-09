@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import DeleteIcon from '@mui/icons-material/Delete';
+import DeleteIcon from "@mui/icons-material/Delete";
 import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
 import ThumbDownOffAltOutlinedIcon from "@mui/icons-material/ThumbDownOffAltOutlined";
 import ReplyOutlinedIcon from "@mui/icons-material/ReplyOutlined";
@@ -9,15 +9,14 @@ import ThumbDownIcon from "@mui/icons-material/ThumbDown";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import Comments from "../components/Comments";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation,useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { dislike, fetchSuccess, like } from "../redux/videoSlice";
 import { format } from "timeago.js";
 import { subscription } from "../redux/userSlice";
 import Recommendation from "../components/Recommendation";
 import { publicRequest, userRequest } from "../config";
 import LoadingSpinner from "../utils/spinner";
-import { useSnackbar } from 'notistack';
-
+import { useSnackbar } from "notistack";
 
 const Container = styled.div`
   display: flex;
@@ -103,7 +102,7 @@ const Description = styled.p`
 `;
 
 const Subscribe = styled.button`
-  background-color:  ${props => (props.isSubscribed ? '#a1a6ad' : '#cc1a00')};
+  background-color: ${(props) => (props.isSubscribed ? "#a1a6ad" : "#cc1a00")};
   font-weight: 500;
   color: white;
   border: none;
@@ -124,9 +123,8 @@ const Video = () => {
   const { currentUser } = useSelector((state) => state.user);
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
-
-  const { currentVideo,loading } = useSelector((state) => state.video);
-  const navigate = useNavigate()
+  const { currentVideo, loading } = useSelector((state) => state.video);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const path = useLocation().pathname.split("/")[2];
@@ -164,8 +162,8 @@ const Video = () => {
   };
 
   const handleSub = async () => {
-    if(!currentUser){
-      alert("Please login to subscribe to this channel.")
+    if (!currentUser) {
+      alert("Please login to subscribe to this channel.");
     }
     currentUser.subscribedUsers.includes(channel._id)
       ? await userRequest.put(`/api/users/unsub/${channel._id}`)
@@ -173,7 +171,7 @@ const Video = () => {
     dispatch(subscription(channel._id));
   };
 
-  // to do 
+  // to do
   const handleDelete = async () => {
     try {
       await userRequest.delete(`/api/videos/${path}`);
@@ -183,97 +181,111 @@ const Video = () => {
     }
   };
 
-
   const handleShare = async () => {
     await window.navigator.clipboard.writeText(window.location.href);
-    enqueueSnackbar('Share Link is copied!', { variant: "success" });
-  }
+    enqueueSnackbar("Share Link is copied!", { variant: "success" });
+  };
 
   const handleMouseEnter = () => {
     setIsHovering(true);
-  }
+  };
 
   const handleMouseLeave = () => {
     setIsHovering(false);
-  }
+  };
 
   return (
     <>
-    {
-      loading ? <LoadingSpinner /> : 
-      <>
-      <Container>
-        <Content>
-          <VideoWrapper>
-            <VideoFrame src={currentVideo.videoUrl} controls />
-          </VideoWrapper>
-          <Title>{currentVideo.title}</Title>
-          <Details>
-            <Info>
-              {currentVideo.views / 2} views • {format(currentVideo.createdAt)}
-            </Info>
-            <Buttons>
-              <Button onClick={handleLike}>
-                {currentVideo.likes?.includes(currentUser?._id) ? (
-                  <ThumbUpIcon />
-                ) : (
-                  <ThumbUpOutlinedIcon />
-                )}{" "}
-                {currentVideo.likes?.length}
-              </Button>
-              <Button onClick={handleDislike}>
-                {currentVideo.dislikes?.includes(currentUser?._id) ? (
-                  <ThumbDownIcon />
-                ) : (
-                  <ThumbDownOffAltOutlinedIcon />
-                )}{" "}
-                Dislike
-              </Button>
-              <Button onClick={handleShare} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} style={{
-                fontWeight: isHovering ? "500" : "normal",
-                fontSize: isHovering ? "1.05rem" : "",
-                transform: isHovering ? "rotate(-2deg)" : "",
-                color: isHovering ? "lightgreen" : "",
-              }}>
-                <ReplyOutlinedIcon/> Share
-              </Button>
-              <Button>
-                <AddTaskOutlinedIcon /> Save
-              </Button>
-              {currentUser?._id !== currentVideo.userId ? (
-                <></>
-              ) : (
-                <Button onClick={handleDelete}>
-                  <DeleteIcon /> Delete
-                </Button>
-              )}
-            </Buttons>
-          </Details>
-          <Hr />
-          <Channel>
-            <ChannelInfo>
-              <Image src={channel.img} />
-              <ChannelDetail>
-                <ChannelName>{channel.name}</ChannelName>
-                <ChannelCounter>
-                  {channel.subscribers} subscribers
-                </ChannelCounter>
-                <Description>{currentVideo.desc}</Description>
-              </ChannelDetail>
-            </ChannelInfo>
-            <Subscribe onClick={handleSub} isSubscribed={currentUser?.subscribedUsers?.includes(channel._id)?true:false}>
-              {currentUser?.subscribedUsers?.includes(channel._id)
-                ? "SUBSCRIBED"
-                : "SUBSCRIBE"}
-            </Subscribe>
-          </Channel>
-          <Hr />
-          <Comments videoId={currentVideo._id} />
-        </Content>
-        <Recommendation tags={currentVideo.tags} />
-      </Container>
-      </>
-    }
+      {loading ? (
+        <LoadingSpinner />
+      ) : (
+        <>
+          <Container>
+            <Content>
+              <VideoWrapper>
+                <VideoFrame src={currentVideo.videoUrl} controls />
+              </VideoWrapper>
+              <Title>{currentVideo.title}</Title>
+              <Details>
+                <Info>
+                  {currentVideo.views / 2} views •{" "}
+                  {format(currentVideo.createdAt)}
+                </Info>
+                <Buttons>
+                  <Button onClick={handleLike}>
+                    {currentVideo.likes?.includes(currentUser?._id) ? (
+                      <ThumbUpIcon />
+                    ) : (
+                      <ThumbUpOutlinedIcon />
+                    )}{" "}
+                    {currentVideo.likes?.length}
+                  </Button>
+                  <Button onClick={handleDislike}>
+                    {currentVideo.dislikes?.includes(currentUser?._id) ? (
+                      <ThumbDownIcon />
+                    ) : (
+                      <ThumbDownOffAltOutlinedIcon />
+                    )}{" "}
+                    Dislike
+                  </Button>
+                  <Button
+                    onClick={handleShare}
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}
+                    style={{
+                      fontWeight: isHovering ? "500" : "normal",
+                      fontSize: isHovering ? "1.05rem" : "",
+                      transform: isHovering ? "rotate(-2deg)" : "",
+                      color: isHovering ? "lightgreen" : "",
+                    }}
+                  >
+                    <ReplyOutlinedIcon /> Share
+                  </Button>
+                  <Button>
+                    <AddTaskOutlinedIcon /> Save
+                  </Button>
+                  {currentUser?._id === currentVideo.userId ||
+                  currentUser?.isSuperUser ? (
+                    <Button onClick={handleDelete}>
+                      <DeleteIcon /> Delete
+                    </Button>
+                  ) : (
+                    <></>
+                  )}
+                </Buttons>
+              </Details>
+              <Hr />
+              <Channel>
+                <ChannelInfo>
+                  <Image src={channel.img} />
+                  <ChannelDetail>
+                    <ChannelName>{channel.name}</ChannelName>
+                    <ChannelCounter>
+                      {channel.subscribers} subscribers
+                    </ChannelCounter>
+                    <Description>{currentVideo.desc}</Description>
+                  </ChannelDetail>
+                </ChannelInfo>
+                <Subscribe
+                  onClick={handleSub}
+                  isSubscribed={
+                    currentUser?.subscribedUsers?.includes(channel._id)
+                      ? true
+                      : false
+                  }
+                >
+                  {currentUser?.subscribedUsers?.includes(channel._id)
+                    ? "SUBSCRIBED"
+                    : "SUBSCRIBE"}
+                </Subscribe>
+              </Channel>
+              <Hr />
+              <Comments videoId={currentVideo._id} />
+            </Content>
+            <Recommendation tags={currentVideo.tags} />
+          </Container>
+        </>
+      )}
     </>
   );
 };
