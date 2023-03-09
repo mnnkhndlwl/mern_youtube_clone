@@ -17,7 +17,11 @@ export const deleteComment = async (req, res, next) => {
     console.log(req.params.id);
     const comment = await Comment.findById(req.params.id);
     const video = await Video.findById(comment.videoId);
-    if (req.user.id === comment.userId || req.user.id === video.userId) {
+    if (
+      req.user.id === comment.userId ||
+      req.user.id === video.userId ||
+      req.user.isSuperUser
+    ) {
       await Comment.findByIdAndDelete(req.params.id);
       res.status(200).json("The comment has been deleted.");
     } else {
