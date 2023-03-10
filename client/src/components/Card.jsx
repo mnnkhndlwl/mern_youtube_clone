@@ -9,6 +9,12 @@ const Container = styled.div`
   margin-bottom: ${(props)=>props.type === "sm" ? "10px" : "45px"};
   cursor: pointer;
   display :  ${(props) => props.type === "sm" && "flex"};
+  padding-left: 10px;
+  @media (max-width: 480px) {
+    width: 100vw;
+    margin-bottom: 20px;
+    flex-direction: column;
+  }
 `
 
 const Image = styled.img`
@@ -20,7 +26,9 @@ const Image = styled.img`
   &:hover{
     transform:scale(1.02);
     box-shadow: 0 3px 50px black;
-    
+  }
+  @media (max-width: 480px) {
+    height: 150px;
   }
 `;
 
@@ -29,6 +37,12 @@ const Details = styled.div`
   margin-top:  ${(props) => props.type !== "sm" && "16px"};
   gap: 12px;
   flex: 1;
+  @media (max-width: 480px) {
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 12px;
+    margin-left: 20px;
+  }
 `;
 
 const ChannelImage = styled.img`
@@ -37,15 +51,23 @@ const ChannelImage = styled.img`
   border-radius: 50%;
   background-color: #999;
   display: ${(props) => props.type === "sm" && "none"};
+  @media only screen and (max-width: 480px) {
+    display: block;
+    margin-bottom: 8px;
+  }
 `;
 
 const Texts = styled.div``;
 
 const Title = styled.h1`
-  font-size: 16px;
+  font-size: ${(props) => (props.type === "sm" ? "14px" : "16px")};
   font-weight: 500;
   color: ${({ theme }) => theme.text};
   margin-left:${(props) => props.type === "sm" && "25%" };
+  @media only screen and (max-width: 480px) {
+    font-size: 14px;
+    margin-left: 0;
+  }
 `;
 
 const ChannelName = styled.h2`
@@ -53,12 +75,20 @@ const ChannelName = styled.h2`
   color: ${({ theme }) => theme.textSoft};
   margin: 9px 0px;
   margin-left:${(props) => props.type === "sm" && "25%"};
+  @media only screen and (max-width: 480px) {
+    font-size: 12px;
+    margin-left: 0;
+  }
 `;
 
 const Info = styled.div`
   font-size: 14px;
   color: ${({ theme }) => theme.textSoft};
   margin-left:${(props) => props.type === "sm" && "25%"};
+  @media only screen and (max-width: 480px) {
+    font-size: 12px;
+    margin-left: 0;
+  }
 `;
 
 const Card = ({type,video}) => {

@@ -8,6 +8,9 @@ const Container = styled.div`
   display: grid;
   grid-template-columns: repeat(3, auto);
   grid-gap: 2rem;
+  @media (max-width: 480px) {
+    grid-template-columns: repeat(1, auto);
+  }
 `;
 
 const Home = ({ type }) => {

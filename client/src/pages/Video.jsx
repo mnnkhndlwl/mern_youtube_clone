@@ -21,10 +21,17 @@ import { useSnackbar } from "notistack";
 const Container = styled.div`
   display: flex;
   gap: 24px;
+  @media (max-width: 480px) {
+  margin-top: 20px;
+  flex-direction: column;
+  }
 `;
 
 const Content = styled.div`
   flex: 5;
+  @media (max-width: 480px) {
+    padding-left: 50px; 
+  }
 `;
 const VideoWrapper = styled.div``;
 
@@ -40,6 +47,9 @@ const Details = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  @media (maxwidth:480px) {
+  display:block;
+  }
 `;
 
 const Info = styled.span`
@@ -50,6 +60,10 @@ const Buttons = styled.div`
   display: flex;
   gap: 20px;
   color: ${({ theme }) => theme.text};
+  @media (max-width: 480px) {
+  margin-right: 35px;
+  gap:10px;
+  }
 `;
 
 const Button = styled.div`
@@ -72,6 +86,9 @@ const Channel = styled.div`
 const ChannelInfo = styled.div`
   display: flex;
   gap: 20px;
+  @media (max-width: 480px) {
+  flex-wrap: wrap;
+  }
 `;
 
 const Image = styled.img`
@@ -110,12 +127,19 @@ const Subscribe = styled.button`
   height: max-content;
   padding: 10px 20px;
   cursor: pointer;
+  @media (max-width: 480px) {
+  margin-right: 30px;
+  }
 `;
 
 const VideoFrame = styled.video`
   max-height: 720px;
   width: 100%;
   object-fit: cover;
+  @media (max-width:'480px') {
+  width: 100vw;
+  object-fit: contain;
+  }
 `;
 
 const Video = () => {
