@@ -123,6 +123,7 @@ const Video = () => {
   const [isHovering, setIsHovering] = useState(false);
   const { currentUser } = useSelector((state) => state.user);
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+  const [isLoading, setLoading] = useState(false);
 
 
   const { currentVideo,loading } = useSelector((state) => state.video);
@@ -152,7 +153,11 @@ const Video = () => {
     fetchData();
   }, [path, dispatch]);
 
-  if (!currentVideo) return "loading... ";
+  if (!currentVideo) {
+    setLoading(true);
+  }
+
+  console.log(isLoading);
 
   const handleLike = async () => {
     await userRequest.put(`/api/users/like/${currentVideo._id}`);
@@ -200,7 +205,7 @@ const Video = () => {
   return (
     <>
     {
-      loading ? <LoadingSpinner /> : 
+      isLoading ? <LoadingSpinner /> : 
       <>
       <Container>
         <Content>
