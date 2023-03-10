@@ -9,6 +9,10 @@ const NewComment = styled.div`
   display: flex;
   justify-content: center;
   gap: 10px;
+  @media (max-width: 480px) {
+  justify-content: space-evenly;
+  gap: 0px;
+  }
 `;
 
 const Avatar = styled.img`
@@ -25,6 +29,9 @@ const Input = styled.input`
   outline: none;
   padding: 5px;
   width: 100%;
+  @media (max-width: 480px) {
+  width: 80%;
+  }
 `;
 const AddComment = styled.button`
   background-color: #87ceeb;
@@ -36,6 +43,9 @@ const AddComment = styled.button`
   height: max-content;
   padding: 10px 20px;
   cursor: pointer;
+  @media (max-width: 480px) {
+  margin-right: 25px;
+  }
 `;
 
 const Comments = ({ videoId }) => {

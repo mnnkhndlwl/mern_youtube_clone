@@ -18,6 +18,11 @@ const Container = styled.div`
   background-color: ${({ theme }) => theme.bgLighter};
   height: 56px;
   z-index: 100;
+
+  @media (max-width: 480px) {
+  height: 48px;
+  padding: 0 20px;
+  }
 `;
 
 const Wrapper = styled.div`
@@ -27,6 +32,12 @@ const Wrapper = styled.div`
   height: 100%;
   padding: 0px 20px;
   position: relative;
+  font-size: 5px;
+
+@media (max-width: 480px) {
+  font-size: 1px;
+  padding: 0 10px;
+  }
 `;
 
 const Search = styled.div`
@@ -43,6 +54,11 @@ const Search = styled.div`
   border: 1px solid rgb(255, 255, 255, 0.3);
   border-radius: 30px;
   color: ${({ theme }) => theme.text};
+  @media (max-width: 480px) {
+  width: 50%;
+  padding: 5px;
+  margin-left: 100px;
+  }
 `;
 
 const Input = styled.input`
@@ -54,6 +70,10 @@ const Input = styled.input`
   outline: none;
   font-size: 18px;
   color: ${({ theme }) => theme.text};
+  @media (max-width: 480px) {
+  padding: 5px;
+  font-size: 15px;
+  }
 `;
 
 const Button = styled.button`
@@ -67,6 +87,12 @@ const Button = styled.button`
   display: flex;
   align-items: center;
   gap: 5px;
+  @media (max-width: 480px) {
+  margin-right:-5px ;
+  font-size: 12px;
+  padding: 2px;
+  gap: 2px;
+  }
 `;
 
 const SearchButton = styled.div`
@@ -77,6 +103,10 @@ const SearchButton = styled.div`
 
   padding-right: 20px;
   padding-left: 20px;
+  @media (max-width: 480px) {
+  width: 50%;
+  padding: 5px;
+  }
 `;
 
 const User = styled.div`
@@ -93,6 +123,10 @@ const Avatar = styled.img`
   height: 32px;
   border-radius: 50%;
   background-color: #999;
+  @media (min-width: 480px) and (max-width: 768px) {
+  width: 48px;
+  height: 48px;
+  }
 `;
 
 const SVG = styled.div`
@@ -116,7 +150,11 @@ const Navbar = ({handleToggle}) => {
   const [openModal, setModel] = useState(false);
 
   const Logo = styled.div`
-    width: 150px;
+  width: 150px;
+  @media (max-width: 480px) {
+  width: 48px;
+  height: 48px;
+  }
   `;
 
   return (
