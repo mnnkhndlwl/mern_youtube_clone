@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { userRequest } from "../config";
 import { useSelector } from "react-redux";
-import DeleteIcon from '@mui/icons-material/Delete';
+import DeleteIcon from "@mui/icons-material/Delete";
 
 const Container = styled.div`
   display: flex;
@@ -45,7 +45,7 @@ const Text = styled.span`
   font-size: 14px;
 `;
 
-const Comment = ({ comment,viid }) => {
+const Comment = ({ comment, viid }) => {
   const { currentUser } = useSelector((state) => state.user);
   const [channel, setChannel] = useState({});
 
@@ -75,14 +75,13 @@ const Comment = ({ comment,viid }) => {
           {channel.name} <Date>1 day ago</Date>
         </Name>
         <Text>{comment.desc}</Text>
-        {
-          currentUser?._id !== comment.userId ? <>
-
-          </> : 
-      <Button onClick={handleDelete}>
-          <DeleteIcon />
-      </Button>
-        }
+        {currentUser?._id === comment.userId || currentUser?.isSuperUser ? (
+          <Button onClick={handleDelete}>
+            <DeleteIcon />
+          </Button>
+        ) : (
+          <></>
+        )}
       </Details>
     </Container>
   );
