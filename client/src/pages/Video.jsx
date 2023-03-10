@@ -146,6 +146,7 @@ const Video = () => {
   const [isHovering, setIsHovering] = useState(false);
   const { currentUser } = useSelector((state) => state.user);
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+  const [isLoading, setLoading] = useState(false);
 
   const { currentVideo, loading } = useSelector((state) => state.video);
   const navigate = useNavigate();
@@ -174,7 +175,11 @@ const Video = () => {
     fetchData();
   }, [path, dispatch]);
 
-  if (!currentVideo) return "loading... ";
+  if (!currentVideo) {
+    setLoading(true);
+  }
+
+  console.log(isLoading);
 
   const handleLike = async () => {
     await userRequest.put(`/api/users/like/${currentVideo._id}`);
@@ -220,6 +225,81 @@ const Video = () => {
 
   return (
     <>
+    {
+      isLoading ? <LoadingSpinner /> : 
+      <>
+      <Container>
+        <Content>
+          <VideoWrapper>
+            <VideoFrame src={currentVideo.videoUrl} controls />
+          </VideoWrapper>
+          <Title>{currentVideo.title}</Title>
+          <Details>
+            <Info>
+              {currentVideo.views / 2} views • {format(currentVideo.createdAt)}
+            </Info>
+            <Buttons>
+              <Button onClick={handleLike}>
+                {currentVideo.likes?.includes(currentUser?._id) ? (
+                  <ThumbUpIcon />
+                ) : (
+                  <ThumbUpOutlinedIcon />
+                )}{" "}
+                {currentVideo.likes?.length}
+              </Button>
+              <Button onClick={handleDislike}>
+                {currentVideo.dislikes?.includes(currentUser?._id) ? (
+                  <ThumbDownIcon />
+                ) : (
+                  <ThumbDownOffAltOutlinedIcon />
+                )}{" "}
+                Dislike
+              </Button>
+              <Button onClick={handleShare} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} style={{
+                fontWeight: isHovering ? "500" : "normal",
+                fontSize: isHovering ? "1.05rem" : "",
+                transform: isHovering ? "rotate(-2deg)" : "",
+                color: isHovering ? "lightgreen" : "",
+              }}>
+                <ReplyOutlinedIcon/> Share
+              </Button>
+              <Button>
+                <AddTaskOutlinedIcon /> Save
+              </Button>
+              {currentUser?._id !== currentVideo.userId ? (
+                <></>
+              ) : (
+                <Button onClick={handleDelete}>
+                  <DeleteIcon /> Delete
+                </Button>
+              )}
+            </Buttons>
+          </Details>
+          <Hr />
+          <Channel>
+            <ChannelInfo>
+              <Image src={channel.img} />
+              <ChannelDetail>
+                <ChannelName>{channel.name}</ChannelName>
+                <ChannelCounter>
+                  {channel.subscribers} subscribers
+                </ChannelCounter>
+                <Description>{currentVideo.desc}</Description>
+              </ChannelDetail>
+            </ChannelInfo>
+            <Subscribe onClick={handleSub} isSubscribed={currentUser?.subscribedUsers?.includes(channel._id)?true:false}>
+              {currentUser?.subscribedUsers?.includes(channel._id)
+                ? "SUBSCRIBED"
+                : "SUBSCRIBE"}
+            </Subscribe>
+          </Channel>
+          <Hr />
+          <Comments videoId={currentVideo._id} />
+        </Content>
+        <Recommendation tags={currentVideo.tags} />
+      </Container>
+      </>
+    }
       {loading ? (
         <LoadingSpinner />
       ) : (
