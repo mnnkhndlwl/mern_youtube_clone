@@ -41,7 +41,7 @@ const Wrapper = styled.div`
 `;
 
 const Search = styled.div`
-  background-color: #333;
+  background-color: ${({ theme }) => theme.bgLighter};
   width: 95%;
   ${'' /* position: absolute;
   left: 0px;
@@ -51,7 +51,7 @@ const Search = styled.div`
   align-items: center;
   justify-content: space-between;
   padding-left: 10px;
-  border: 1px solid rgb(255, 255, 255, 0.3);
+  border: 1px solid ${({ theme }) => theme.text};
   border-radius: 30px;
   color: ${({ theme }) => theme.text};
   @media (max-width: 480px) {
@@ -96,7 +96,7 @@ const Button = styled.button`
 `;
 
 const SearchButton = styled.div`
-  background-color: #222;
+  background-color: ${({ theme }) => theme.bgLighter};
   padding: 10px;
   border-radius: 0 30px 30px 0;
   display: flex;
@@ -139,7 +139,15 @@ const SVG = styled.div`
   margin-left: 12px;
   border: 0.1px solid rgb(255, 255, 255, 0.05);
   background-color: ${({theme}) => theme.bgLighter};
+  color: ${({ theme }) => theme.text};
   border-radius: 50%;
+`;
+
+const Item = styled.div`
+  color: ${({ theme }) => theme.text};
+  &:hover {
+    background-color: ${({ theme }) => theme.theme};
+  }
 `;
 
 const Navbar = ({handleToggle}) => {
@@ -163,11 +171,15 @@ const Navbar = ({handleToggle}) => {
         <Wrapper>
 
           <div style={{display:'flex', alignItems:'center', gap: "10px"}}>
-            <MenuIcon style={{ color: "white", fontSize: "25px", cursor: "pointer" }} onClick={()=>handleToggle()}/>
+            <Item>
+                <MenuIcon onClick={()=>handleToggle()}/>
+            </Item>
             <Link to="/" style={{textDecoration:'none'}}>
               <Logo style={{display:'flex', alignItems:'center', gap:'10px'}}>
                 <img src={logo} alt="logo" style={{width: '30px'}} />
-                <h1 style={{color: 'white', fontSize: '25px'}}>VideoTube</h1>
+                <Item>
+                <h1 style={{fontSize: '25px'}}>VideoTube</h1>
+                </Item>
               </Logo>
             </Link>
           </div>
@@ -185,8 +197,8 @@ const Navbar = ({handleToggle}) => {
               placeholder="Search"
               onChange={(e) => setQ(e.target.value)}
               onSelect={() => {
-                document.getElementById('search-bar').style.border = "2px solid rgb(26, 70, 130)";
-                document.getElementById('search-btn').style.borderLeft = "1px solid rgb(26, 70, 130)";
+                document.getElementById('search-bar').style.border = `2px solid ${({ theme }) => theme.text}`;
+                document.getElementById('search-btn').style.borderLeft = `1px solid ${({ theme }) => theme.bgLighter}`;
               }}
             />
 
@@ -197,7 +209,7 @@ const Navbar = ({handleToggle}) => {
           </Search>
 
           <SVG onClick={() => window.alert(`Mic feature isn't yet working ⚙️`)}>
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill={'white'} class="bi bi-mic-fill" viewBox="0 0 16 16">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill={({ theme }) => theme.bgLighter} class="bi bi-mic-fill" viewBox="0 0 16 16">
               <path d="M5 3a3 3 0 0 1 6 0v5a3 3 0 0 1-6 0V3z"/>
               <path d="M3.5 6.5A.5.5 0 0 1 4 7v1a4 4 0 0 0 8 0V7a.5.5 0 0 1 1 0v1a5 5 0 0 1-4.5 4.975V15h3a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1h3v-2.025A5 5 0 0 1 3 8V7a.5.5 0 0 1 .5-.5z"/>
             </svg>
