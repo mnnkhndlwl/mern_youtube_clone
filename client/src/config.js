@@ -19,7 +19,7 @@ import axios from "axios";
 //  // axios.defaults.withCredentials = true;
 
 // export const axiosInstance = axios.create({
-//     baseURL : "http://localhost:5000/" 
+//     baseURL : "http://localhost:5000/"
 // });
 const BASE_URL = "https://youtube-backend-93iq.onrender.com/";
 // const TOKEN =
@@ -29,9 +29,9 @@ const BASE_URL = "https://youtube-backend-93iq.onrender.com/";
 const user = JSON.parse(localStorage.getItem("root"))?.user;
 console.log(user);
 var TOKEN;
-  const currentUser = user && JSON.parse(user).currentUser;
-  TOKEN = currentUser?.token;
-  console.log(TOKEN);
+const currentUser = user && JSON.parse(user).currentUser;
+TOKEN = currentUser?.token;
+console.log(TOKEN);
 // if(JSON.parse(JSON.parse(localStorage.getItem("root"))?.user).currentUser['token'] != null) {
 //   var TOKEN;
 // try {

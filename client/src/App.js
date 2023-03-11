@@ -65,7 +65,7 @@ const NetworkStatus = styled.div`
 function App() {
   const [darkMode, setDarkMode] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
-  const [openReportModal, setOpenReportModal] = useState(true);
+  const [openReportModal, setOpenReportModal] = useState(false);
 
   const handleToggle = () => {
     setIsOpen(!isOpen);

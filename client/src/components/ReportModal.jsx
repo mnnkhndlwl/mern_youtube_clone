@@ -1,12 +1,25 @@
 import { Button, Dialog, Input } from "@mui/material";
 import { useState } from "react";
+import { userRequest } from "../config";
+import { useSelector } from "react-redux";
 
 const ReportIssueModal = (props) => {
+  const { currentUser } = useSelector((state) => state.user);
   const { openReportModal, setOpenReportModal } = props;
   const [issueText, setIssueText] = useState("");
 
-  const handleInputChange = (e) => {
+  const handleReportSumbit = async (e) => {
     e.preventDefault();
+    try {
+      const resp = await userRequest.post("/api/reports/new", {
+        userId: currentUser?._id,
+        issue: issueText,
+      });
+      resp.status === 200 && window.alert(`Issue Reported Successfully!`);
+      setOpenReportModal(false);
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   return (
@@ -40,6 +53,7 @@ const ReportIssueModal = (props) => {
           multiline
           disableUnderline
           placeholder="Write your issue"
+          onChange={(e) => setIssueText(e.target.value)}
           sx={{
             boxSizing: "border-box",
             borderRadius: "4px",
@@ -52,7 +66,7 @@ const ReportIssueModal = (props) => {
             outline: "1px solid black",
           }}
         />
-        <Button>Sumbit</Button>
+        <Button onClick={handleReportSumbit}>Sumbit</Button>
       </div>
     </Dialog>
   );
