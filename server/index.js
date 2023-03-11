@@ -5,6 +5,7 @@ import userRoutes from "./routes/users.js";
 import videoRoutes from "./routes/videos.js";
 import commentRoutes from "./routes/comments.js";
 import authRoutes from "./routes/auth.js";
+import reportRoutes from "./routes/reports.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 const app = express();
@@ -18,15 +19,17 @@ app.use(cors());
 // to connect our application to mongodb
 const connect = async () => {
   try {
-    const conn = await mongoose.connect(process.env.MONGO,{ useNewUrlParser: true, useUnifiedTopology: true },);
+    const conn = await mongoose.connect(process.env.MONGO, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
 
-    console.log(`MongoDB Connected: ${conn.connection.host}`)
+    console.log(`MongoDB Connected: ${conn.connection.host}`);
   } catch (error) {
-    console.log(error)
-    process.exit(1)
+    console.log(error);
+    process.exit(1);
   }
-}
-
+};
 
 //middlewares
 app.use(cookieParser());
@@ -36,7 +39,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/videos/", videoRoutes);
 app.use("/api/comments", commentRoutes);
-
+app.use("/api/reports", reportRoutes);
 
 //error handler - to give error messages so that we don't have to implement catch error for every request
 app.use((err, req, res, next) => {
@@ -49,9 +52,7 @@ app.use((err, req, res, next) => {
   });
 });
 
-
-
 app.listen(process.env.PORT || 5000, () => {
-    connect();
-    console.log("Connected to Server");
-  });
+  connect();
+  console.log("Connected to Server");
+});

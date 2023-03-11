@@ -12,6 +12,7 @@ import { useSelector } from "react-redux";
 // import { useSwipeable } from "react-swipeable";
 import useNetworkStatus from "./utils/useNetworkStatus";
 import Profile from "./pages/Profile";
+import ReportIssueModal from "./components/ReportModal";
 
 const Container = styled.div`
   display: flex;
@@ -64,6 +65,7 @@ const NetworkStatus = styled.div`
 function App() {
   const [darkMode, setDarkMode] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
+  const [openReportModal, setOpenReportModal] = useState(false);
 
   const handleToggle = () => {
     setIsOpen(!isOpen);
@@ -84,11 +86,20 @@ function App() {
       )}
       <Container>
         <BrowserRouter>
-          <Menu isOpen={isOpen} darkMode={darkMode} setDarkMode={setDarkMode} />
+          <Menu
+            isOpen={isOpen}
+            darkMode={darkMode}
+            setDarkMode={setDarkMode}
+            setOpenReportModal={setOpenReportModal}
+          />
           <Main>
             <Navbar handleToggle={handleToggle} />
             <Main>
               <Wrapper>
+                <ReportIssueModal
+                  openReportModal={openReportModal}
+                  setOpenReportModal={setOpenReportModal}
+                />
                 <Routes>
                   <Route path="/">
                     <Route index element={<Home type="random" />} />

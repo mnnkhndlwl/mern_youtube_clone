@@ -47,7 +47,6 @@ const Item = styled.div`
   }
 `;
 
-
 const Hr = styled.hr`
   margin: 15px 0px;
   border: 0.5px solid ${({ theme }) => theme.soft};
@@ -75,7 +74,7 @@ const Title = styled.h2`
   margin-bottom: 20px;
 `;
 
-const Menu = ({ darkMode, setDarkMode, isOpen }) => {
+const Menu = ({ darkMode, setDarkMode, isOpen, setOpenReportModal }) => {
   const { currentUser } = useSelector((state) => state.user);
 
   const navigate = useNavigate();
@@ -92,112 +91,120 @@ const Menu = ({ darkMode, setDarkMode, isOpen }) => {
     }
   };
 
+  const handleReportClick = () => {
+    if (currentUser) {
+      setOpenReportModal(true);
+    } else {
+      window.alert("Login first");
+    }
+  };
+
   return (
     <>
       {isOpen && (
         <Container>
-            <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
-              <Item>
-                <HomeIcon />
-                Home
-              </Item>
-            </Link>
-            <Link
-              to="trends"
-              style={{ textDecoration: "none", color: "inherit" }}
-            >
-              <Item>
-                <ExploreOutlinedIcon />
-                Explore
-              </Item>
-            </Link>
-            <Link
-              to="subscriptions"
-              style={{ textDecoration: "none", color: "inherit" }}
-            >
-              <Item>
-                <SubscriptionsOutlinedIcon />
-                Subscriptions
-              </Item>
-            </Link>
-            <Hr />
+          <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
             <Item>
-              <VideoLibraryOutlinedIcon />
-              Library
+              <HomeIcon />
+              Home
             </Item>
+          </Link>
+          <Link
+            to="trends"
+            style={{ textDecoration: "none", color: "inherit" }}
+          >
             <Item>
-              <HistoryOutlinedIcon />
-              History
+              <ExploreOutlinedIcon />
+              Explore
             </Item>
-            <Hr />
-            {currentUser ? (
-              <>
-                <Button className="btn1" onClick={handleLogout}>
-                  <ExitToAppIcon />
-                  Log Out
-                </Button>
-              </>
-            ) : (
-              <>
-                <Login className="signin">
-                  <Item>Sign in to like videos, comment, and subscribe.</Item>
-                  <Link to="signin" style={{ textDecoration: "none" }}>
-                    <Button>
-                      <AccountCircleOutlinedIcon />
-                      SIGN IN
-                    </Button>
-                  </Link>
-                </Login>
-              </>
-            )}
-            <Hr />
-            <Title>BEST Categories</Title>
+          </Link>
+          <Link
+            to="subscriptions"
+            style={{ textDecoration: "none", color: "inherit" }}
+          >
             <Item>
-              <LibraryMusicOutlinedIcon />
-              Music
+              <SubscriptionsOutlinedIcon />
+              Subscriptions
             </Item>
+          </Link>
+          <Hr />
+          <Item>
+            <VideoLibraryOutlinedIcon />
+            Library
+          </Item>
+          <Item>
+            <HistoryOutlinedIcon />
+            History
+          </Item>
+          <Hr />
+          {currentUser ? (
+            <>
+              <Button className="btn1" onClick={handleLogout}>
+                <ExitToAppIcon />
+                Log Out
+              </Button>
+            </>
+          ) : (
+            <>
+              <Login className="signin">
+                <Item>Sign in to like videos, comment, and subscribe.</Item>
+                <Link to="signin" style={{ textDecoration: "none" }}>
+                  <Button>
+                    <AccountCircleOutlinedIcon />
+                    SIGN IN
+                  </Button>
+                </Link>
+              </Login>
+            </>
+          )}
+          <Hr />
+          <Title>BEST Categories</Title>
+          <Item>
+            <LibraryMusicOutlinedIcon />
+            Music
+          </Item>
+          <Item>
+            <SportsBasketballOutlinedIcon />
+            Sports
+          </Item>
+          <Item>
+            <SportsEsportsOutlinedIcon />
+            Gaming
+          </Item>
+          <Item>
+            <MovieOutlinedIcon />
+            Movies
+          </Item>
+          <Item>
+            <ArticleOutlinedIcon />
+            News
+          </Item>
+          <Item>
+            <LiveTvOutlinedIcon />
+            Live
+          </Item>
+          <Hr />
+          <Link
+            to="settings"
+            style={{ textDecoration: "none", color: "inherit" }}
+          >
             <Item>
-              <SportsBasketballOutlinedIcon />
-              Sports
+              <SettingsOutlinedIcon />
+              Your Videos
             </Item>
-            <Item>
-              <SportsEsportsOutlinedIcon />
-              Gaming
-            </Item>
-            <Item>
-              <MovieOutlinedIcon />
-              Movies
-            </Item>
-            <Item>
-              <ArticleOutlinedIcon />
-              News
-            </Item>
-            <Item>
-              <LiveTvOutlinedIcon />
-              Live
-            </Item>
-            <Hr />
-            <Link
-              to="settings"
-              style={{ textDecoration: "none", color: "inherit" }}
-            >
-              <Item>
-                <SettingsOutlinedIcon />
-                your videos
-              </Item>
-            </Link>
-            <Item>
-              <FlagOutlinedIcon />
-              Report
-            </Item>
-            <Item>
-              <HelpOutlineOutlinedIcon />
-              Help
-            </Item>
-            <Item onClick={() => setDarkMode(!darkMode)}>
-              <SettingsBrightnessOutlinedIcon />
-              {darkMode ? "Light" : "Dark"} Mode
-            </Item>
+          </Link>
+          <Item onClick={handleReportClick}>
+            <FlagOutlinedIcon />
+            Report
+          </Item>
+          <Item>
+            <HelpOutlineOutlinedIcon />
+            Help
+          </Item>
+          <Item onClick={() => setDarkMode(!darkMode)}>
+            <SettingsBrightnessOutlinedIcon />
+            {darkMode ? "Light" : "Dark"} Mode
+          </Item>
         </Container>
       )}
     </>
