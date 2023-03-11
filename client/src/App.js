@@ -93,7 +93,7 @@ function App() {
             setOpenReportModal={setOpenReportModal}
           />
           <Main>
-            <Navbar handleToggle={handleToggle} />
+            <Navbar handleToggle={handleToggle} darkMode={darkMode} />
             <Main>
               <Wrapper>
                 <ReportIssueModal
