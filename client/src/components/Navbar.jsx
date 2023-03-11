@@ -170,17 +170,12 @@ const Navbar = ({ handleToggle, darkMode }) => {
   const [q, setQ] = useState("");
   const { currentUser } = useSelector((state) => state.user);
   const [openModal, setModel] = useState(false);
-  const [voiceToText, setVoiceToText] = useState("");
-  const [tooltipText, setTooltipText] = useState("Start Mic");
-  let availableHits = 3;
 
   const {
     transcript,
     listening,
-    resetTranscript,
     browserSupportsSpeechRecognition,
     isMicrophoneAvailable,
-    finalTranscript,
   } = useSpeechRecognition();
 
   useEffect(() => {
@@ -191,25 +186,19 @@ const Navbar = ({ handleToggle, darkMode }) => {
 
   const handleMicButton = () => {
     if (!isMicrophoneAvailable) {
-      if (availableHits) {
-        const getLocalStream = () => {
-          navigator.mediaDevices
-            .getUserMedia({ video: false, audio: true })
-            .then((stream) => {
-              window.localStream = stream;
-              window.localAudio.srcObject = stream;
-              window.localAudio.autoplay = true;
-            })
-            .catch((err) => {
-              console.error(`you got an error: ${err}`);
-            });
-        };
-
-        getLocalStream();
-        availableHits--;
-      } else {
-        return window.alert(`Allow Microphone Permission`);
-      }
+      return window.alert(`Microphone Permission Not Availble`);
+      // if (window.confirm(`Allow Microphone Permission`)) {
+      //   navigator.mediaDevices
+      //     .getUserMedia({ audio: true })
+      //     .then(function (stream) {
+      //       console.log("You let me use your mic!");
+      //     })
+      //     .catch(function (err) {
+      //       console.log("No mic for you!");
+      //     });
+      // } else {
+      //   return;
+      // }
     }
     if (listening) {
       setQ(transcript);
@@ -218,14 +207,6 @@ const Navbar = ({ handleToggle, darkMode }) => {
       SpeechRecognition.startListening();
     }
   };
-
-  useEffect(() => {
-    if (listening) {
-      setTooltipText("Stop Mic");
-    } else {
-      setTooltipText("Start Mic");
-    }
-  }, [listening]);
 
   return (
     <>
@@ -260,12 +241,14 @@ const Navbar = ({ handleToggle, darkMode }) => {
                 placeholder="Search"
                 // bug: when start mic, already typed text in search bar gets removed.
                 value={listening ? transcript : q}
-                onChange={(e) => setQ(e.target.value)}
-                onSelect={() => {
+                onChange={(e) => {
                   if (listening) {
                     setQ(transcript);
                     SpeechRecognition.stopListening();
                   }
+                  setQ(e.target.value);
+                }}
+                onSelect={() => {
                   document.getElementById(
                     "search-bar"
                   ).style.border = `2px solid ${({ theme }) => theme.text}`;
@@ -294,7 +277,7 @@ const Navbar = ({ handleToggle, darkMode }) => {
               }}
               onClick={handleMicButton}
             >
-              <Tooltip title={tooltipText}>
+              <Tooltip title={listening ? "Stop Mic" : "Start Mic"}>
                 <svg
                   fill={listening ? "lightgreen" : darkMode ? "white" : ""}
                   xmlns="http://www.w3.org/2000/svg"
