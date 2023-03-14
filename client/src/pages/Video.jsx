@@ -62,7 +62,6 @@ const Buttons = styled.div`
   color: ${({ theme }) => theme.text};
   @media (max-width: 480px) {
   margin-right: 35px;
-  gap:10px;
   }
 `;
 
@@ -71,8 +70,32 @@ const Button = styled.div`
   align-items: center;
   gap: 5px;
   cursor: pointer;
+    &:first-child {
+    background-color: #3b3a3a;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+    padding: 10px 15px;
+    
+  }
+    &:nth-child(2) {
+    background-color: #3b3a3a;
+    margin-left: -20px;
+    padding: 10px 15px;
+    border-left: 1px solid #6f6f6f;
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+  &:nth-child(3) {
+    background-color: #3b3a3a;
+    padding: 10px 15px;
+    border-radius: 10px;
+  }
+  &:nth-child(4) {
+    background-color: #3b3a3a;
+    padding: 10px 15px;
+    border-radius: 10px;
+  }
 `;
-
 const Hr = styled.hr`
   margin: 15px 0px;
   border: 0.5px solid ${({ theme }) => theme.soft};
@@ -81,6 +104,7 @@ const Hr = styled.hr`
 const Channel = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
 `;
 
 const ChannelInfo = styled.div`
@@ -123,9 +147,10 @@ const Subscribe = styled.button`
   font-weight: 500;
   color: white;
   border: none;
-  border-radius: 3px;
+  border-radius: 10px;
   height: max-content;
   padding: 10px 20px;
+  margin-left: 40px;
   cursor: pointer;
   @media (max-width: 480px) {
   margin-right: 30px;
@@ -235,9 +260,23 @@ const Video = () => {
           </VideoWrapper>
           <Title>{currentVideo.title}</Title>
           <Details>
-            <Info>
-              {currentVideo.views / 2} views • {format(currentVideo.createdAt)}
-            </Info>
+                  <Channel>
+                    <ChannelInfo>
+                      <Image src={channel.img} />
+                      <ChannelDetail>
+                        <ChannelName>{channel.name}</ChannelName>
+                        <ChannelCounter>
+                          {channel.subscribers} subscribers
+                        </ChannelCounter>
+                        <Description>{currentVideo.desc}</Description>
+                      </ChannelDetail>
+                    </ChannelInfo>
+                    <Subscribe onClick={handleSub} isSubscribed={currentUser?.subscribedUsers?.includes(channel._id) ? true : false}>
+                      {currentUser?.subscribedUsers?.includes(channel._id)
+                        ? "SUBSCRIBED"
+                        : "SUBSCRIBE"}
+                    </Subscribe>
+                  </Channel>
             <Buttons>
               <Button onClick={handleLike}>
                 {currentVideo.likes?.includes(currentUser?._id) ? (
@@ -253,7 +292,7 @@ const Video = () => {
                 ) : (
                   <ThumbDownOffAltOutlinedIcon />
                 )}{" "}
-                Dislike
+                {/* Dislike */}
               </Button>
               <Button onClick={handleShare} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} style={{
                 fontWeight: isHovering ? "500" : "normal",
@@ -276,23 +315,11 @@ const Video = () => {
             </Buttons>
           </Details>
           <Hr />
-          <Channel>
-            <ChannelInfo>
-              <Image src={channel.img} />
-              <ChannelDetail>
-                <ChannelName>{channel.name}</ChannelName>
-                <ChannelCounter>
-                  {channel.subscribers} subscribers
-                </ChannelCounter>
-                <Description>{currentVideo.desc}</Description>
-              </ChannelDetail>
-            </ChannelInfo>
-            <Subscribe onClick={handleSub} isSubscribed={currentUser?.subscribedUsers?.includes(channel._id)?true:false}>
-              {currentUser?.subscribedUsers?.includes(channel._id)
-                ? "SUBSCRIBED"
-                : "SUBSCRIBE"}
-            </Subscribe>
-          </Channel>
+          <Details>
+              <Info>
+                {currentVideo.views / 2} views • {format(currentVideo.createdAt)}
+              </Info>
+          </Details>
           <Hr />
           <Comments videoId={currentVideo._id} />
         </Content>
