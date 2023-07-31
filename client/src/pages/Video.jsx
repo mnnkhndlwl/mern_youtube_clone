@@ -181,30 +181,32 @@ const Video = () => {
 
   const [channel, setChannel] = useState({});
 
+  const fetchData = async () => {
+    try {
+      setLoading(true);
+      const videoRes = await publicRequest.get(`/api/videos/find/${path}`);
+      await publicRequest.put(`api/videos/view/${path}`);
+      console.log(path);
+      const channelRes = await publicRequest.get(
+        `/api/users/find/${videoRes.data.userId}`
+      );
+      setChannel(channelRes.data);
+      dispatch(fetchSuccess(videoRes.data));
+      setLoading(false);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   useEffect(() => {
-    console.log("pathin use");
-    const fetchData = async () => {
-      try {
-        const videoRes = await publicRequest.get(`/api/videos/find/${path}`);
-        await publicRequest.put(`api/videos/view/${path}`);
-        console.log(path);
-        const channelRes = await publicRequest.get(
-          `/api/users/find/${videoRes.data.userId}`
-        );
-        setChannel(channelRes.data);
-        dispatch(fetchSuccess(videoRes.data));
-      } catch (err) {
-        console.log(err);
-      }
-    };
     fetchData();
-  }, [path, dispatch]);
+  },[path,dispatch]);
+
+
 
   if (!currentVideo) {
     setLoading(true);
   }
-
-  console.log(isLoading);
 
   const handleLike = async () => {
     await userRequest.put(`/api/users/like/${currentVideo._id}`);
