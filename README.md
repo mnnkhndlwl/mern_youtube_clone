@@ -46,17 +46,22 @@
 <!-- TABLE OF CONTENTS -->
 
 ### 📌Table of Contents :
-- [What is Open Source?](#What-is-Open-Source?)
-- [Open Source programs this repo has been part of](#Open-Source-programs-this-repo-has-been-part-of)
-- [Overview of Project](#Overview-of-Project)
-  - [Tech Stacks used](#Tech-Stacks-used)
-  - [Key Features](#Key-Features)
-  - [Screenshots of Website](#Screenshots-of-Websites)
-- [Contribution Guidelines](#Contribution-Guidelines)
-- [Usage](#Usage)
-- [Contributors](#Contributors)
-- [Github Beginner Guide](#Github-Beginner-Guide)
-- [Feedback](#Feedback)
+- [](#)
+- [](#-1)
+- [](#-2)
+- [](#-3)
+- [](#-4)
+  - [Contribution Guidelines](#contribution-guidelines)
+      - [🔑Guidelines](#guidelines)
+    - [How to Contribute:](#how-to-contribute)
+  - [Usage](#usage)
+    - [Install dependencies](#install-dependencies)
+    - [Run Server](#run-server)
+  - [Contributors](#contributors)
+  - [Github Beginner Guide](#github-beginner-guide)
+      - [Are you a beginner in using Github?](#are-you-a-beginner-in-using-github)
+  - [Feedback](#feedback)
+    - [](#-5)
 
 
   
@@ -90,6 +95,16 @@ Read more about it <a href="https://www.digitalocean.com/community/tutorial_seri
     <a href="https://jwoc.tech/">JGEC Winter of Code</a>
 
 </div>
+
+<div align="center">
+<img src="https://res.cloudinary.com/dzgfaqpjg/image/upload/v1696867158/hf10_icon_fcl_rgb_miweuf.png" width="150px">
+</div>
+
+<div align="center">
+    <a href="https://hacktoberfest.com/">Hacktoberfest 2023</a>
+
+</div>
+
 <br>
 
 <br>
