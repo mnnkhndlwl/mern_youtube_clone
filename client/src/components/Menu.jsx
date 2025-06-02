@@ -18,6 +18,7 @@ import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import FlagOutlinedIcon from "@mui/icons-material/FlagOutlined";
 import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 import SettingsBrightnessOutlinedIcon from "@mui/icons-material/SettingsBrightnessOutlined";
+import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
 import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../redux/userSlice";
 import { useDispatch } from "react-redux";
@@ -136,6 +137,15 @@ const Menu = ({ darkMode, setDarkMode, isOpen, setOpenReportModal }) => {
             <HistoryOutlinedIcon />
             History
           </Item>
+          <Link
+            to="saved"
+            style={{ textDecoration: "none", color: "inherit" }}
+          >
+            <Item>
+              <BookmarkBorderOutlinedIcon />
+              Saved Videos
+            </Item>
+          </Link>
           <Hr />
           {currentUser ? (
             <>
