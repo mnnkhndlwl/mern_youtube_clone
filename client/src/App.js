@@ -13,6 +13,7 @@ import { useSelector } from "react-redux";
 import useNetworkStatus from "./utils/useNetworkStatus";
 import Profile from "./pages/Profile";
 import ReportIssueModal from "./components/ReportModal";
+import SavedVideos from "./pages/SavedVideos";
 
 const Container = styled.div`
   display: flex;
@@ -112,6 +113,7 @@ function App() {
                     <Route path="settings" element={<Home type="settings" />} />
                     <Route path="search" element={<Search />} />
                     <Route path="profile" element={<Profile />} />
+                    <Route path="saved" element={<SavedVideos />} />
                     <Route
                       path="signin"
                       element={currentUser ? <Home /> : <SignIn />}

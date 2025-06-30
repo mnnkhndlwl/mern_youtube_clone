@@ -4,6 +4,8 @@ import { format } from "timeago.js";
 import React, { useEffect, useState } from "react";
 import { publicRequest } from "../config.js";
 import LoadingSpinner from "../utils/spinner";
+import { useDispatch, useSelector } from "react-redux";
+import { saveVideo, unsaveVideo } from "../redux/savedVideosSlice";
 
 const Container = styled.div`
   width: ${(props) => props.type !== "sm" && "360px"};
@@ -93,9 +95,32 @@ const Info = styled.div`
   }
 `;
 
+const SaveButton = styled.button`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: white;
+  transition: all 0.2s ease;
+  &:hover {
+    background: rgba(0, 0, 0, 0.7);
+  }
+`;
+
 const Card = ({ type, video }) => {
   const [channel, setChannel] = useState({});
   const [isLoading, setLoading] = useState(true);
+  const dispatch = useDispatch();
+  const savedVideos = useSelector((state) => state.savedVideos.savedVideos);
+  const isSaved = savedVideos.some((savedVideo) => savedVideo._id === video._id);
 
   useEffect(() => {
     const fetchChannel = async () => {
@@ -106,6 +131,15 @@ const Card = ({ type, video }) => {
     fetchChannel();
   }, [video.userId]);
 
+  const handleSave = (e) => {
+    e.preventDefault();
+    if (isSaved) {
+      dispatch(unsaveVideo(video._id));
+    } else {
+      dispatch(saveVideo(video));
+    }
+  };
+
   return (
     <>
       {isLoading ? (
@@ -115,6 +149,9 @@ const Card = ({ type, video }) => {
           <Link to={`/video/${video._id}`} style={{ textDecoration: "none" }}>
             <Container type={type}>
               <Image type={type} src={video.imgUrl} />
+              <SaveButton onClick={handleSave}>
+                {isSaved ? "✓" : "+"}
+              </SaveButton>
               <Details type={type}>
                 <ChannelImage type={type} src={channel.img} />
                 <Texts>
